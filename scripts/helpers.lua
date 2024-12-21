@@ -7,7 +7,9 @@ function every(duration, offset, period)
 	return offset_frames % duration < period
 end
 
-
+function lerp(a, b, t)
+	return a + t * (b - a)
+end
 
 function getComponentFromCell(cell)
 	local id = getCanvasVal(cell.x, cell.y)
@@ -84,22 +86,4 @@ function mouseWithinRect(x, y, w, h)
 	else
 		return false
 	end
-end
-
-function createButton(x, y, width, height)
-	local button = {
-		x = x,
-		y = y,
-		width = width,
-		height = height,
-		hover = false,
-		selected = false,
-		onClick = function(self)
-		end,
-		onHover = function(self)
-		end,
-		draw = function(self)
-		end
-	}
-	return button
 end

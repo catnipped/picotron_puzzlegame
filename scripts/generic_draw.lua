@@ -1,18 +1,8 @@
 function drawDebug()
-	local color = 8
-	if can_place then color = 7 end
+	local memory = "M:" .. stat(0)
 	local cpu = "CPU:" .. flr(stat(1) * 100)
-	print(cpu, 480 - 8 * #cpu, 32, stat(1) + 6)
-	print(tooltip, 480 - 8, 40, 30)
-	--print(#placed_components,4,12,11)
-	--[[
-		for y = 1,#held_component.collider do
-			for x = 1,#held_component.collider[y] do
-				print(held_component.collider[y][x],30+x*12,30+y*12,7)
-			end
-		end
-		]]
-	--print("last delete: " .. debug_delete,4,32,57)
+	print(cpu, 480 - 5 * #cpu, 9, stat(1) + 6)
+	print(memory, 480 - 5 * #memory, 1, stat(0) + 6)
 end
 
 function stringIcon(icon, color, label, label_after, color_reset)

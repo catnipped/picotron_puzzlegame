@@ -1,6 +1,7 @@
 --[[pod_format="raw",created="2024-05-12 07:37:40",modified="2024-05-12 09:16:38",revision=93]]
 
 include("scripts/game_init.lua")
+include("scripts/ui.lua")
 include("scripts/progression.lua")
 include("scripts/blueprint_library.lua")
 include("scripts/component_library.lua")
@@ -41,7 +42,7 @@ function _init()
 	cursor = {}
 
 	-- load progression save file or init if nil
-	progression = fetch("/appdata/puzzle/progression.pod")
+	--progression = fetch("/appdata/puzzle/progression.pod")
 	if progression == nil then
 		mkdir("/appdata/puzzle")
 		mkdir("/appdata/puzzle/blueprint_solutions")
@@ -66,22 +67,7 @@ function _update()
 	if current_screen == "workbench" then
 		updateWorkbench()
 	end
-
-	for b in all(buttons) do
-		if mouseWithinRect(b.x, b.y, b.width, b.height) then
-			b.hover = true
-			b.onHover(b)
-			if mbtnp(0) then
-				b.onClick(b)
-				b.selected = true
-			end
-		else
-			b.hover = false
-		end
-		if not mouseWithinRect(b.x, b.y, b.width, b.height) and mbtnp(0) then
-			b.selected = false
-		end
-	end
+	buttonUpdate(buttons)
 end
 
 function _draw()

@@ -29,5 +29,115 @@ blueprint_library = {
 		sell_target = 10,
 		power_target = 15
 	},
+	--don't use these
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+	{
+		file_name = "test",
+		name = "test",
+		sell_target = 1,
+		power_target = 1
+	},
+
 
 }

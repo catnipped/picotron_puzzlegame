@@ -1,8 +1,30 @@
 --[[pod_format="raw",created="2024-12-03 10:50:52",modified="2024-12-03 10:50:52",revision=0]]
 
 function drawLevelSelect()
-	drawWindowMetal(64, 8, 250, 100)
-	print(welcome_message, 72, 16, 11)
+	drawWindowMetal(16, 16, 172, 172)
+	print(welcome_message, 22, 22, 11)
+	print(level_page + 1, 16, 250)
+
+	-- progression stats
+	local prog_x = 70
+	local prog_y = 250
+	spr(91, prog_x, prog_y - 4)
+	print(progression.cleared_amount .. "/" .. #blueprint_library, prog_x + 20, prog_y, 7)
+	prog_x = 120
+	pal(3, 16)
+	pal(11, 62)
+	spr(91, prog_x, prog_y - 4)
+	pal(3, 3)
+	pal(11, 11)
+	print(progression.cleared_with_blue_amount .. "/" .. #blueprint_library, prog_x + 20, prog_y, 7)
+
+	drawLevelButtons(level_buttons)
+end
+
+function drawLevelButtons(buttons)
+	for b in all(buttons) do
+		b.draw(b)
+	end
 end
 
 function drawBlueprintFile(x, y, level_number, hover, selected)
