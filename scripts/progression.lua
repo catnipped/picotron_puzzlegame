@@ -29,5 +29,5 @@ end
 
 function saveProgression()
 	updateProgression()
-	store("/appdata/progression.pod", progression)
+	store("/appdata/puzzle/progression.pod", progression)
 end

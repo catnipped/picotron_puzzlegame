@@ -18,7 +18,7 @@ include("includes/pancelor_mouse.lua")
 
 function _init()
 	--set palette
-	poke4(0x5000, get(fetch "pal/0.pal"))
+	poke4(0x5000, get(fetch "/ram/cart/pal/0.pal"))
 	palt(0, false)
 	palt(15, true)
 
@@ -41,11 +41,12 @@ function _init()
 	cursor = {}
 
 	-- load progression save file or init if nil
-	progression = fetch("/appdata/progression.pod")
+	progression = fetch("/appdata/puzzle/progression.pod")
 	if progression == nil then
-		mkdir("/appdata/blueprint_solutions")
+		mkdir("/appdata/puzzle")
+		mkdir("/appdata/puzzle/blueprint_solutions")
 		progression = initProgression(blueprint_library)
-		store("/appdata/progression.pod", progression)
+		store("/appdata/puzzle/progression.pod", progression)
 	end
 
 	-- set start screen

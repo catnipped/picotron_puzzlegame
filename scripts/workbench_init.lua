@@ -8,8 +8,8 @@ function initWorkbench(level_number)
 	initLineRestrictions(blueprint.restrictions, blueprint.canvas.bitmap[2].bmp)
 
 	-- set up workbench (current solution)
-	printh("loading... " .. "/appdata/blueprint_solutions/" .. blueprint.file_name .. ".pod")
-	workbench = fetch("/appdata/blueprint_solutions/" .. blueprint.file_name .. ".pod")
+	printh("loading... " .. "/appdata/puzzle/blueprint_solutions/" .. blueprint.file_name .. ".pod")
+	workbench = fetch("/appdata/puzzle/blueprint_solutions/" .. blueprint.file_name .. ".pod")
 	if workbench == nil then
 		workbench = {}
 		workbench.canvas = initCanvas()
@@ -63,7 +63,7 @@ function initGoBackButton()
 		--saving
 		printh("saving...")
 		saveProgression()
-		store("/appdata/blueprint_solutions/" .. blueprint.file_name .. ".pod", workbench)
+		store("/appdata/puzzle/blueprint_solutions/" .. blueprint.file_name .. ".pod", workbench)
 
 		--switch screens
 		current_screen = "level select"
