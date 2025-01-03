@@ -56,7 +56,7 @@ function initGoBackButton()
 	goBack_button.onClick = function(self)
 		if blueprint.ready then
 			progression.blueprints[current_level].clear = true
-			if compute_generated > 0 then
+			if workbench.compute_generated > 0 then
 				progression.blueprints[current_level].clear_with_blue = true
 			end
 		end

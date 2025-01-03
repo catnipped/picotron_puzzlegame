@@ -80,7 +80,7 @@ component_types = {
 		sprite = 24,
 		rotations = 0,
 		max_rot = 2,
-		price = 4,
+		price = 1,
 		power = 3,
 		compute = 0,
 		collider = {
@@ -169,7 +169,7 @@ component_types_experimental = {
 			spr(self.sprite + self.rotations, self.x, self.y)
 		end,
 		-- ability_global = function(self)
-		-- 	compute_generated += placed_component_amount[self.type]
+		-- 	workbench.compute_generated += placed_component_amount[self.type]
 		-- end
 	},
 	{

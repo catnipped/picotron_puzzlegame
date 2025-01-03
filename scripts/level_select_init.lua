@@ -21,7 +21,7 @@ function initLevelSelect()
 			drawBlueprintFile(self.x, self.y + self.y_offset, i, self.hover, self.selected)
 		end
 		level_button.onClick = function(self)
-			if self.selected then
+			if self.selected and progression.blueprints[i].unlocked then
 				current_screen = "workbench"
 				initWorkbench(i)
 			end
