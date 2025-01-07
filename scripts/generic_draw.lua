@@ -66,6 +66,26 @@ function drawWindowMarble(x, y, width, height)
 	spr(window_sprites[4], x + width - 8, y + height - 8)
 end
 
+function drawPillButton(x, y, width, hover, clicked, label)
+	width = max(16, width)
+	if clicked then
+		sspr(159, 0, 0, 4, 16, x + 8, y, width - 16, 16)
+		spr(157, x, y)       --left corner
+		spr(158, x + width - 8, y) --right corner
+	else
+		sspr(151, 0, 0, 4, 16, x + 8, y, width - 16, 16)
+		spr(149, x, y)       --left corner
+		spr(150, x + width - 8, y) --right corner
+	end
+	if label then
+		if clicked then y += 1 end
+		print(label, x + 6, y + 4, 0)
+		local color = 7
+		if hover and clicked == false then color = 14 end
+		print(label, x + 6, y + 3, color)
+	end
+end
+
 function drawComponentInfo(component, x, y)
 	local width = 90
 	local height = 56

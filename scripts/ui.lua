@@ -1,11 +1,15 @@
 function buttonUpdate(buttons)
 	for b in all(buttons) do
+		b.clicked = false
 		if mouseWithinRect(b.x + b.x_offset, b.y + b.y_offset, b.width, b.height) then
 			b.hover = true
 			b.onHover(b)
 			if mbtnp(0) then
 				b.onClick(b)
 				b.selected = true
+			end
+			if mbtn(0) then
+				b.clicked = true
 			end
 		else
 			b.hover = false

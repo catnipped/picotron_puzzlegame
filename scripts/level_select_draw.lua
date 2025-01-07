@@ -55,6 +55,6 @@ function drawBlueprintFile(x, y, level_number, hover, selected)
 			pal(11, 11)
 		end
 	else -- if not unlocked
-		rectfill(x - 3, y - 3, x + 33, y + 41, 1)
+		spr(161, x, y)
 	end
 end

@@ -6,10 +6,10 @@ blueprint_library = {
 		name = "blueprint 1",
 		sell_target = 8,
 		power_target = 4,
-		restrictions = {
-			createLineRestriction("col", 2, line_restrictions_lib.exact_power, 1),
-			createLineRestriction("col", 3, line_restrictions_lib.forbidden_type, 1),
-		}
+		-- restrictions = {
+		-- 	createLineRestriction("col", 2, line_restrictions_lib.exact_power, 1),
+		-- 	createLineRestriction("col", 3, line_restrictions_lib.forbidden_type, 1),
+		-- }
 	},
 	{
 		file_name = "test",

@@ -15,7 +15,7 @@ function getComponentFromCell(cell)
 	local id = getCanvasVal(cell.x, cell.y)
 
 	if id > 1 then
-		for i in all(placed_components) do
+		for i in all(workbench.placed_components) do
 			if i.id == id then
 				return i
 			end

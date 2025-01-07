@@ -1,3 +1,4 @@
+---@diagnostic disable: cast-local-type, param-type-mismatch, undefined-global, missing-parameter
 --[[pod_format="raw",created="2024-12-17 11:40:33",modified="2024-12-17 11:42:14",revision=1]]
 -- # picotron error explorer
 --

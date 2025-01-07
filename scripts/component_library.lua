@@ -80,7 +80,7 @@ component_types = {
 		sprite = 24,
 		rotations = 0,
 		max_rot = 2,
-		price = 1,
+		price = 3,
 		power = 3,
 		compute = 0,
 		collider = {
@@ -142,7 +142,7 @@ component_types_experimental = {
 			for i in all(self.neighbors) do
 				local id = getCanvasVal(i.x, i.y)
 
-				for p in all(placed_components) do
+				for p in all(workbench.placed_components) do
 					if p.id == id and p.type == self.type then
 						self.power += 1
 					end
@@ -213,7 +213,7 @@ component_types_experimental = {
 		end,
 		ability_instance = function(self)
 			local count = 0
-			for i in all(placed_components) do
+			for i in all(workbench.placed_components) do
 				if i.type == self.type then
 					count += 1
 				end

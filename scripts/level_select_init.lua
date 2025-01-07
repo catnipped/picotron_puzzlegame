@@ -35,10 +35,7 @@ function initLevelSelect()
 	local page_count = flr(#blueprint_library / (level_select_width * 4))
 	local page_up = createButton(16, 216, 16, 16)
 	page_up.draw = function(self)
-		local color = 2
-		if self.hover then color = 7 end
-		rectfill(self.x, self.y, self.x + self.width, self.y + self.height, color)
-		print("<", self.x + 4, self.y + 4, 0)
+		drawPillButton(self.x, self.y, self.width, self.hover, self.clicked, "<")
 	end
 	page_up.onClick = function(self)
 		level_page -= 1
@@ -48,10 +45,7 @@ function initLevelSelect()
 
 	local page_down = createButton(36, 216, 16, 16)
 	page_down.draw = function(self)
-		local color = 2
-		if self.hover then color = 7 end
-		rectfill(self.x, self.y, self.x + self.width, self.y + self.height, color)
-		print(">", self.x + 4, self.y + 4, 0)
+		drawPillButton(self.x, self.y, self.width, self.hover, self.clicked, ">")
 	end
 	page_down.onClick = function(self)
 		level_page += 1
