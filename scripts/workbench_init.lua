@@ -50,7 +50,8 @@ function initGoBackButton()
 		local color = 2
 		if blueprint.ready then color = 11 end
 		if self.hover then color = 7 end
-		rectfill(self.x, self.y, self.x + self.width, self.y + self.height, color)
+		drawPillButton(self.x, self.y, self.width, self.hover, self.clicked)
+		--	rectfill(self.x, self.y, self.x + self.width, self.y + self.height, color)
 		print("<- go back", self.x + 4, self.y + 4, 0)
 	end
 	goBack_button.onClick = function(self)
