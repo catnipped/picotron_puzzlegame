@@ -69,6 +69,7 @@ function _update()
         updateWorkbench()
     end
     buttonUpdate(buttons)
+   
 end
 
 function _draw()

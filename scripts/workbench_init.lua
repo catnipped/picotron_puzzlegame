@@ -140,12 +140,12 @@ function initComponentBoxButtons(x, y, component_list)
     local y_offset = 0
     local page_count = 1
     for i = 1, #component_types do
-        local component_button = createButton(x, y + 16 + y_offset, 73,
+        local component_button = createButton(x, y + 10 + y_offset, 73,
             component_types[i].height * grid_size)
         component_button.draw = function(self)
             if self.visible then
                 if self.hover then
-                    rectfill(self.x, self.y, self.x + self.width, self.y + self.height, 38)
+                    rectfill(self.x, self.y - 1, self.x + self.width, self.y + self.height, 39)
                 end
                 drawComponentInBox(i, self.x, self.y, self.width)
             end
@@ -162,7 +162,7 @@ function initComponentBoxButtons(x, y, component_list)
         y_offset += 16 + component_types[i].height * grid_size
         if y_offset > 150 then
             y_offset = 0
-            component_button.y = y + 16
+            component_button.y = y + 10
             page_count += 1
         end
 
@@ -172,7 +172,7 @@ function initComponentBoxButtons(x, y, component_list)
     end
     component_buttons.page_max = page_count
     if page_count > 1 then
-        initComponentPaginationButtons(x, y)
+        initComponentPaginationButtons(x + 43, y)
     end
 end
 

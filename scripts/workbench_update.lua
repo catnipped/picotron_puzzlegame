@@ -13,6 +13,14 @@ function updateWorkbench()
         rotateComponent(workbench.held_component)
     end
 
+    if mouse_val.wheel_y == 1 then
+        rotateComponent(workbench.held_component)
+    elseif mouse_val.wheel_y == -1 then
+        for i = 1, 3 do
+            rotateComponent(workbench.held_component)
+        end
+    end
+
     -- get tooltip info from placed component
     if mouse_mode[1] and mouseWithinCanvas() then
         local mouse_x, mouse_y = mouse_val.x - workbench.canvas.x, mouse_val.y - workbench.canvas.y
@@ -32,10 +40,15 @@ function updateWorkbench()
         rotateComponent(workbench.held_component)
     end
 
-    for i = 1, #component_types do --hot switch component
+    for i = 1, component_buttons.page_max do --hot switch component
         if keyp("" .. i) then
-            workbench.held_component = tablecopy(component_types[i])
-            mouseMode(2)
+            component_buttons.page = i
+            for b in all(component_buttons.buttons) do
+                b.visible = false
+                if b.page == component_buttons.page then
+                    b.visible = true
+                end
+            end
         end
     end
 

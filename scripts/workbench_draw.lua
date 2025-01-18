@@ -161,6 +161,14 @@ end
 
 function drawComponentBox(x, y, width, height)
     drawWindowMetal(x, y, width, height)
+    if component_buttons.page_max > 1 then
+        local x, y = x + 5, y + 5
+        spr(142, x, y)
+        spr(128 + component_buttons.page, x + 24, y)
+        spr(143, x + 29, y)
+        spr(128 + component_buttons.page_max, x + 35, y)
+    end
+
     for b in all(component_buttons.buttons) do
         if b.visible then
             b.draw(b)
@@ -171,16 +179,15 @@ end
 function drawComponentInBox(i, x, y, w)
     local h = component_types[i].height * grid_size
     local info_string = workbench.placed_component_amount[i] .. " x " .. "$" .. component_types[i].price
-    drawCheckerBoard(x + 7, y, component_types[i].width, component_types[i].height, 38, 39)
-    spr(component_types[i].sprite, x + 7, y)
+    drawCheckerBoard(x + 4, y, component_types[i].width, component_types[i].height, 38, 39)
+    spr(component_types[i].sprite, x + 4, y)
 
-    spr(111, x - 1, y)
-    pal(11, 39)
-    spr(128 + i, x, y + 1)
-    pal(11, 11)
-    --print(i,x+1,y+3,39)
-    print(info_string, 1 + x + w - (#info_string * 5), y + h + 2, 11)
-    line(x, y + h + 11, x + w, y + h + 11, 11)
+    --spr(111, x - 1, y)
+    --pal(11, 39)
+    --spr(128 + i, x, y + 1)
+    --pal(11, 11)
+    print(info_string, 1 + x + w - (#info_string * 5), y + h + 2, 40)
+    line(x, y + h + 11, x + w, y + h + 11, 40)
 end
 
 function drawToolbox(x, y, width, height)
