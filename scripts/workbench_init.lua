@@ -131,7 +131,7 @@ function initToolboxButtons(x, y)
     end
 
     rotate_button.onClick = function(self)
-        rotateComponent()
+        rotateComponent(workbench.held_component)
     end
     add(buttons, rotate_button)
 end
