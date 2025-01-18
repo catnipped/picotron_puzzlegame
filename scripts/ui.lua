@@ -1,7 +1,7 @@
 function buttonUpdate(buttons)
 	for b in all(buttons) do
 		b.clicked = false
-		if mouseWithinRect(b.x + b.x_offset, b.y + b.y_offset, b.width, b.height) then
+		if mouseWithinRect(b.x + b.x_offset, b.y + b.y_offset, b.width, b.height) and b.visible then
 			b.hover = true
 			b.onHover(b)
 			if mbtnp(0) then
@@ -28,6 +28,7 @@ function createButton(x, y, width, height)
 		y_offset = 0,
 		width = width,
 		height = height,
+        visible = true,
 		hover = false,
 		selected = false,
 		onClick = function(self)
