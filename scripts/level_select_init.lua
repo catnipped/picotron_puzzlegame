@@ -1,5 +1,6 @@
 function initLevelSelect()
 	buttons = {}
+	popups = {}
 	level_buttons = {}
 	window { cursor = 1 }
 
@@ -52,4 +53,29 @@ function initLevelSelect()
 		level_page = mid(0, level_page, page_count)
 	end
 	add(buttons, page_down)
+
+	checkComponentUnlock()
+end
+
+function checkComponentUnlock()
+	if progression.components_unlocks < flr(progression.cleared_amount / 1)
+		and progression.components_starting_unlocks + progression.components_unlocks < #component_types
+	then
+		progression.components_unlocks += 1
+
+		--make a popup!
+		local unlock_pop = createButton(64, 32, 200, 150)
+		local component_nr = progression.components_starting_unlocks + progression.components_unlocks
+		unlock_pop.draw = function(self)
+			drawWindowMetal(self.x, self.y, self.width, self.height)
+			print("You unlocked a new component!", self.x + 8, self.y + 8, 11)
+			drawComponentInfo(component_types[component_nr], self.x + 80, self.y + 24)
+			spr(component_types[component_nr].sprite, self.x + 8, self.y + 24)
+		end
+		unlock_pop.onClick = function(self)
+			del(popups, self)
+		end
+
+		add(popups, unlock_pop)
+	end
 end

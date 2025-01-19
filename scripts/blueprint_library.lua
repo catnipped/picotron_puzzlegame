@@ -33,73 +33,73 @@ blueprint_library = {
 	{
 		file_name = "test",
 		name = "test",
-		sell_target = 1,
+		sell_target = 10,
 		power_target = 1
 	},
 	{
 		file_name = "test",
 		name = "test",
-		sell_target = 1,
+		sell_target = 10,
 		power_target = 1
 	},
 	{
 		file_name = "test",
 		name = "test",
-		sell_target = 1,
+		sell_target = 10,
 		power_target = 1
 	},
 	{
 		file_name = "test",
 		name = "test",
-		sell_target = 1,
+		sell_target = 10,
 		power_target = 1
 	},
 	{
 		file_name = "test",
 		name = "test",
-		sell_target = 1,
+		sell_target = 10,
 		power_target = 1
 	},
 	{
 		file_name = "test",
 		name = "test",
-		sell_target = 1,
+		sell_target = 10,
 		power_target = 1
 	},
 	{
 		file_name = "test",
 		name = "test",
-		sell_target = 1,
+		sell_target = 10,
 		power_target = 1
 	},
 	{
 		file_name = "test",
 		name = "test",
-		sell_target = 1,
+		sell_target = 10,
 		power_target = 1
 	},
 	{
 		file_name = "test",
 		name = "test",
-		sell_target = 1,
+		sell_target = 10,
 		power_target = 1
 	},
 	{
 		file_name = "test",
 		name = "test",
-		sell_target = 1,
+		sell_target = 10,
 		power_target = 1
 	},
 	{
 		file_name = "test",
 		name = "test",
-		sell_target = 1,
+		sell_target = 10,
 		power_target = 1
 	},
 	{
 		file_name = "test",
 		name = "test",
-		sell_target = 1,
+		sell_target = 10,
 		power_target = 1
 	},
 	{

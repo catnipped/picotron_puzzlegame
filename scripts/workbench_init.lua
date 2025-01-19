@@ -139,7 +139,7 @@ end
 function initComponentBoxButtons(x, y, component_list)
 	local y_offset = 0
 	local page_count = 1
-	local unlocks = min(#component_types, progression.unlocked_components)
+	local unlocks = min(#component_types, (progression.components_starting_unlocks + progression.components_unlocks))
 	for i = 1, unlocks do
 		local component_button = createButton(x, y + 10 + y_offset, 73,
 			component_types[i].height * grid_size)

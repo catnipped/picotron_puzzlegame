@@ -5,7 +5,9 @@ function initProgression(bp_lib)
 		cleared_with_blue_amount = 0,
 		blueprints_starting_unlocks = 4,
 		blueprints = {},
-		unlocked_components = 3
+		components_starting_unlocks = 3,
+		components_unlocks = 0
+
 	}
 	for i = 1, #bp_lib do
 		table.blueprints[i] = {
@@ -34,7 +36,7 @@ function updateLevelProgression()
 end
 
 function unlockComponent()
-	
+
 end
 
 function saveProgression()
