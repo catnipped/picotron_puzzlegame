@@ -47,7 +47,7 @@ function _init()
         mkdir("/appdata/puzzle")
         mkdir("/appdata/puzzle/blueprint_solutions")
         progression = initProgression(blueprint_library)
-        updateProgression()
+        updateLevelProgression()
         store("/appdata/puzzle/progression.pod", progression)
     end
 

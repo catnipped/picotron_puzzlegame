@@ -1,12 +1,13 @@
 --[[pod_format="raw",created="2024-12-17 11:40:19",modified="2024-12-17 11:40:37",revision=1]]
-function initProgression(lib)
+function initProgression(bp_lib)
 	local table = {
 		cleared_amount = 0,
 		cleared_with_blue_amount = 0,
-		starting_unlocks = 4,
+		blueprints_starting_unlocks = 4,
 		blueprints = {},
+		unlocked_components = 3
 	}
-	for i = 1, #lib do
+	for i = 1, #bp_lib do
 		table.blueprints[i] = {
 			unlocked = false,
 			clear = false,
@@ -16,7 +17,7 @@ function initProgression(lib)
 	return table
 end
 
-function updateProgression()
+function updateLevelProgression()
 	progression.cleared_amount = 0
 	progression.cleared_with_blue_amount = 0
 	for i = 1, #progression.blueprints do
@@ -26,13 +27,17 @@ function updateProgression()
 		if progression.blueprints[i].clear_with_blue then
 			progression.cleared_with_blue_amount += 1
 		end
-		if i <= progression.starting_unlocks + progression.cleared_amount then
+		if i <= progression.blueprints_starting_unlocks + progression.cleared_amount then
 			progression.blueprints[i].unlocked = true
 		end
 	end
 end
 
+function unlockComponent()
+	
+end
+
 function saveProgression()
-	updateProgression()
+	updateLevelProgression()
 	store("/appdata/puzzle/progression.pod", progression)
 end
