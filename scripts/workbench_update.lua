@@ -62,7 +62,9 @@ function updateWorkbench()
             placeComponent()
         end
     end
-    buttonUpdate(component_buttons.buttons)
+    for b in all(component_buttons.buttons) do
+        buttonUpdate(b)
+    end
 end
 
 function checkPlacement()

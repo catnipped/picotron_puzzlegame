@@ -87,3 +87,7 @@ function mouseWithinRect(x, y, w, h)
         return false
     end
 end
+
+function alignCenter(object_length, rectangle_length)
+    return flr((rectangle_length / 2) - (object_length / 2))
+end

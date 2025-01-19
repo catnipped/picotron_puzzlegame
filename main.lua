@@ -70,9 +70,11 @@ function _update()
 		updateWorkbench()
 	end
 	if #popups > 0 then
-		buttonUpdate(popups)
+		buttonUpdate(popups[#popups]) --only update the last one if multiples
 	else
-		buttonUpdate(buttons)
+        for b in all(buttons) do
+    		buttonUpdate(b)
+        end
 	end
 end
 
