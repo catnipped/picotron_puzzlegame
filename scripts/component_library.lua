@@ -100,12 +100,16 @@ component_library = {
 		end,
 		ability_instance = function(self)
 			--check if neighbors are the same type, sets power to 1 if so
-			self.power = 0
+			local check = false
 			for i in all(self.neighbors) do
 				local neighbour = getComponentFromCell(i) or { type = 0 } -- placeholder to avoid nil error
 				if neighbour.type == self.type then
-					self.power = 1
+					check = true
+					addModifier(self.power_modifiers, { mod = 1, id = self.id })
 				end
+			end
+			if check == false then
+				removeModifier(self.power_modifiers, self.id)
 			end
 		end,
 

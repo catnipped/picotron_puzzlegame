@@ -137,6 +137,34 @@ function mouseWithinCanvas()
 	end
 end
 
+function addModifier(modifier_list, modifier) -- can be called even if modifier already exists
+	local uniquness_check = true
+	for i in all(modifier_list) do
+		if i.id == modifier.id then
+			uniquness_check = false
+		end
+	end
+	if uniquness_check then
+		add(modifier_list, modifier)
+	end
+end
+
+function removeModifier(modifier_list, modifier_id) --can be called even if modifier doesn't exist
+	for i in all(modifier_list) do
+		if i.id == modifier_id then
+			del(modifier_list, i)
+		end
+	end
+end
+
+function sumModifiers(original, modifiers) -- "printed" value, and then a list of modifiers
+	local sum = original
+	for i in all(modifiers) do
+		sum += i.mod
+	end
+	return sum
+end
+
 function evaluationUpdate()
 	for i in all(workbench.placed_components) do
 		if i.ability_instance then
@@ -145,6 +173,8 @@ function evaluationUpdate()
 		if i.ability_global then -- set flags for each component type placed
 			workbench.global_abilities[i.type] = true
 		end
+
+		i.power = sumModifiers(i.power_original, i.power_modifiers)
 	end
 
 	workbench.cost_of_components = evaluateCost(workbench.placed_components)
@@ -240,6 +270,10 @@ function placeComponent()
 	placed_component.x = mouse_cell_x * grid_size + workbench.canvas.x
 	placed_component.y = mouse_cell_y * grid_size + workbench.canvas.y
 	placed_component.id = workbench.held_component_id
+
+	placed_component.power_original = placed_component.power
+	placed_component.power_modifiers = {}
+
 	placed_component.neighbors = neighbors
 	if placed_component.onPlace ~= nil then
 		placed_component.onPlace(placed_component)
