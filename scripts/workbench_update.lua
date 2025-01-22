@@ -174,8 +174,13 @@ function evaluationUpdate()
 			workbench.global_abilities[i.type] = true
 		end
 
+		i.price = sumModifiers(i.price_original, i.price_modifiers)
 		i.power = sumModifiers(i.power_original, i.power_modifiers)
+		i.compute = sumModifiers(i.compute_original, i.compute_modifiers)
 	end
+
+	workbench.power_target = sumModifiers(blueprint.power_target, workbench.power_target_modifiers)
+	workbench.sell_target = sumModifiers(blueprint.sell_target, workbench.sell_target_modifiers)
 
 	workbench.cost_of_components = evaluateCost(workbench.placed_components)
 	workbench.power_generated = evaluatePower(workbench.placed_components)
@@ -190,8 +195,8 @@ function evaluationUpdate()
 	end
 
 	if workbench.restrictions
-		and workbench.power_generated >= blueprint.power_target
-		and workbench.cost_of_components <= blueprint.sell_target then
+		and workbench.power_generated >= workbench.power_target
+		and workbench.cost_of_components <= workbench.sell_target then
 		blueprint.ready = true
 	end
 end
@@ -212,6 +217,7 @@ function evaluatePower(placed_components)
 	for i in all(placed_components) do
 		total += i.power
 	end
+	total = sumModifiers(total, workbench.power_generated_modifiers)
 	return total
 end
 
@@ -220,6 +226,7 @@ function evaluateCompute(placed_components)
 	for i in all(placed_components) do
 		total += i.compute
 	end
+	total = sumModifiers(total, workbench.compute_generated_modifiers)
 	return total
 end
 
@@ -228,6 +235,7 @@ function evaluateCost(placed_components)
 	for i in all(placed_components) do
 		total += i.price
 	end
+	total = sumModifiers(total, workbench.costs_modifiers)
 	return total
 end
 
@@ -271,8 +279,13 @@ function placeComponent()
 	placed_component.y = mouse_cell_y * grid_size + workbench.canvas.y
 	placed_component.id = workbench.held_component_id
 
+	--modifiers
+	placed_component.price_original = placed_component.price
+	placed_component.price_modifiers = {}
 	placed_component.power_original = placed_component.power
 	placed_component.power_modifiers = {}
+	placed_component.compute_original = placed_component.compute
+	placed_component.compute = {}
 
 	placed_component.neighbors = neighbors
 	if placed_component.onPlace ~= nil then
@@ -297,12 +310,19 @@ function eraseComponent()
 
 	local id = getCanvasVal(mouse_cell_x, mouse_cell_y)
 
-	if id > 1 then
+	if id > 1 then                             -- only erase if hits something erasable...
+		for i in all(workbench.placed_components) do --call onErase
+			if i.id == id and component_types[i.type].onErase != nil then
+				component_types[i.type].onErase(i)
+			end
+		end
+
 		deleteCellsFromCanvas(id)
 		deleteComponentFromPlacedComponents(id)
-	end
 
-	evaluationUpdate()
+
+		evaluationUpdate()
+	end
 end
 
 function deleteCellsFromCanvas(id)

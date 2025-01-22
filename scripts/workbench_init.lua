@@ -30,8 +30,15 @@ function initWorkbench(level_number)
 		workbench.placed_component_amount = countComponents(workbench.placed_components)
 		--stats
 		workbench.cost_of_components = 0
+		workbench.costs_modifiers = {}
 		workbench.power_generated = 0
+		workbench.power_generated_modifiers = {}
 		workbench.compute_generated = 0
+		workbench.compute_generated_modifiers = {}
+		workbench.power_target = blueprint.power_target
+		workbench.power_target_modifiers = {}
+		workbench.sell_target = blueprint.sell_target
+		workbench.sell_target_modifiers = {}
 		workbench.restrictions = false
 
 		--instances a component from the library and gives it an id

@@ -54,11 +54,17 @@ component_library = {
 		info = "Each one reduces \nexpenses by -$1",
 		sprite = 16,
 		max_rot = 4,
-		price = -1,
+		price = 0,
 		collider = {
 			{ 1, 1 },
 			{ 1, 0 }
 		},
+		onPlace = function(self)
+			addModifier(workbench.sell_target_modifiers, { mod = 1, id = self.id })
+		end,
+		onErase = function(self)
+			removeModifier(workbench.sell_target_modifiers, self.id)
+		end
 	},
 	{
 		name = "Long",
@@ -192,6 +198,7 @@ function componentFromTemplate(index)
 			spr(self.sprite + self.rotations, self.x, self.y)
 		end,
 		onPlace = lib_component.onPlace or nil,
+		onErase = lib_component.onErase or nil,
 		ability_global = lib_component.ability_global or nil,
 		ability_instance = lib_component.ability_instance or nil,
 	}

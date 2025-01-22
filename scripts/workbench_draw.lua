@@ -85,14 +85,14 @@ end
 
 function drawTotal(x, y)
 	local cost = "" .. max(flr(workbench.cost_of_components), 0)
-	local sell_target = "" .. blueprint.sell_target
+	local sell_target = "" .. workbench.sell_target
 	drawWindowMetal(x - 4, y - 3, 64, 50)
 	spr(75, x, y)
 	for i = 1, #cost do
 		local nr = 0 .. sub(cost, i, i)
 		spr(65 + nr, x + (7 * i), y)
 	end
-	if workbench.cost_of_components > blueprint.sell_target then
+	if workbench.cost_of_components > workbench.sell_target then
 		pal(11, 8)
 		pal(38, 54)
 		pal(39, 51)
@@ -167,7 +167,6 @@ function drawComponentBox(x, y, width, height)
 	spr(128 + component_buttons.page, x + 24, y)
 	spr(143, x + 29, y)
 	spr(128 + component_buttons.page_max, x + 35, y)
-
 
 	for b in all(component_buttons.buttons) do
 		if b.visible then
