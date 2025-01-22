@@ -27,6 +27,8 @@ function _init()
 	poke(0x4000, get(fetch "/system/fonts/lil_mono.font"))
 	--poke(0x4000, get(fetch("includes/enias_font.font")))
 
+	component_types = initComponentTypes() -- generates exhaustive table of each type of component, using the library
+
 	--tile size of the canvas, components etc
 	grid_size = 16
 
@@ -72,9 +74,9 @@ function _update()
 	if #popups > 0 then
 		buttonUpdate(popups[#popups]) --only update the last one if multiples
 	else
-        for b in all(buttons) do
-    		buttonUpdate(b)
-        end
+		for b in all(buttons) do
+			buttonUpdate(b)
+		end
 	end
 end
 
