@@ -1,5 +1,20 @@
 --[[pod_format="raw",created="2024-05-12 08:42:14",modified="2024-11-29 11:48:20",revision=67]]
 component_library = {
+	-- must have:
+	-- 	sprite
+	-- 	collider
+	-- optional:
+	--	name
+	--	info
+	--	price
+	--	power
+	--	compute
+	-- 	max_rot
+	-- 	draw(self)
+	-- 	onPlace(self) add other unique variables that can be referenced by itself
+	-- 	ability_global(self)
+	-- 	ability_instance(self)
+
 	{
 		name = "Brick",
 		info = "Generates " ..
@@ -12,8 +27,10 @@ component_library = {
 		price = 0,
 		collider = { { 1 } },
 		onPlace = function(self)
-			local sprite_variation = workbench.placed_component_amount[self.type] % 4 + 1
-			self.sprite = self.sprite + sprite_variation
+			self.sprite_variation = workbench.placed_component_amount[self.type] % 4 + 1
+		end,
+		draw = function(self)
+			spr(self.sprite + self.sprite_variation, self.x, self.y)
 		end,
 		ability_global = function(self) -- generate 1 power for each 4 of this
 			local power = flr(workbench.placed_component_amount[self.type] / 4)
@@ -157,8 +174,8 @@ end
 
 function componentFromTemplate(index)
 	local lib_component = tablecopy(component_library[index])
-	local spawned_component = {
-		name = lib_component.name,
+	local component = {
+		name = lib_component.name or "Untitled",
 		info = lib_component.info or "",
 		sprite = lib_component.sprite,
 		rotations = 0,
@@ -172,11 +189,11 @@ function componentFromTemplate(index)
 		end,
 		onPlace = lib_component.onPlace or nil,
 		ability_global = lib_component.ability_global or nil,
-		ability_instance = lib_component.ability_instance or nil
+		ability_instance = lib_component.ability_instance or nil,
 	}
-	spawned_component.width = #spawned_component.collider[1]
-	spawned_component.height = #spawned_component.collider
-	return spawned_component
+	component.width = #component.collider[1]
+	component.height = #component.collider
+	return component
 end
 
 -- component_types_experimental = {
