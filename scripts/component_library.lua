@@ -133,7 +133,7 @@ component_library = {
 
 	},
 	{
-		name = "Attach",
+		name = "Booster",
 		info = "Boosts the effect of attached component",
 		sprite = 43,
 		max_rot = 4,
@@ -145,6 +145,45 @@ component_library = {
 			local x_offset = 0
 			if self.rotations == 3 then x_offset = -2 end
 			spr(self.sprite + self.rotations, self.x + x_offset, self.y + y_offset)
+		end,
+		onPlace = function(self)
+			self.boosted_neighbour = nil
+			for y = 1, workbench.canvas.grid_height do
+				for x = 1, workbench.canvas.grid_width do
+					if workbench.canvas.grid[y][x] == self.id then
+						if self.rotations == 0 then --south
+							self.boosted_neighbour = vec(x, y + 1)
+						elseif self.rotations == 1 then --east
+							self.boosted_neighbour = vec(x + 1, y)
+						elseif self.rotations == 2 then --north
+							self.boosted_neighbour = vec(x, y - 1)
+						elseif self.rotations == 3 then --west
+							self.boosted_neighbour = vec(x - 1, y)
+						end
+					end
+				end
+			end
+		end,
+		ability_instance = function(self)
+			local id = getCanvasVal(self.boosted_neighbour.x, self.boosted_neighbour.y)
+			if id > 1 then
+				local boosted_neighbor = nil
+				for i in all(workbench.placed_components) do
+					if i.id == id then
+						boosted_neighbor = i
+					end
+				end
+
+				if boosted_neighbor != nil and boosted_neighbor.power > 0 then
+					addModifier(boosted_neighbor.power_modifiers, { mod = 1, id = self.id })
+				end
+			end
+		end,
+		onErase = function(self)
+			for i in all(workbench.placed_components) do
+				removeModifier(i.power_modifiers, self.id)
+				removeModifier(i.compute_modifiers, self.id)
+			end
 		end
 	},
 	{
