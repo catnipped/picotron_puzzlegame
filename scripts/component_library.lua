@@ -61,9 +61,6 @@ component_library = {
 		},
 		onPlace = function(self)
 			addModifier(workbench.sell_target_modifiers, { mod = 1, id = self.id })
-		end,
-		onErase = function(self)
-			removeModifier(workbench.sell_target_modifiers, self.id)
 		end
 	},
 	{
@@ -98,7 +95,7 @@ component_library = {
 			{ 1, 1 },
 		},
 		draw = function(self)
-			if self.power > 0 then
+			if self.produces_power then
 				pal(0, 10)
 			end
 			spr(self.sprite + self.rotations, self.x, self.y)
@@ -106,15 +103,15 @@ component_library = {
 		end,
 		ability_instance = function(self)
 			--check if neighbors are the same type, sets power to 1 if so
-			local check = false
+			self.produces_power = false
 			for i in all(self.neighbors) do
 				local neighbour = getComponentFromCell(i) or { type = 0 } -- placeholder to avoid nil error
 				if neighbour.type == self.type then
-					check = true
+					self.produces_power = true
 					addModifier(self.power_modifiers, { mod = 1, id = self.id })
 				end
 			end
-			if check == false then
+			if self.produces_power == false then
 				removeModifier(self.power_modifiers, self.id)
 			end
 		end,
@@ -163,28 +160,19 @@ component_library = {
 					end
 				end
 			end
+			self.ability_instance(self)
 		end,
 		ability_instance = function(self)
 			local id = getCanvasVal(self.boosted_neighbour.x, self.boosted_neighbour.y)
 			if id > 1 then
-				local boosted_neighbor = nil
 				for i in all(workbench.placed_components) do
 					if i.id == id then
-						boosted_neighbor = i
+						addModifier(i.power_modifiers, { mod = 1, id = self.id })
+						addModifier(i.compute_modifiers, { mod = 1, id = self.id })
 					end
-				end
-
-				if boosted_neighbor != nil and boosted_neighbor.power > 0 then
-					addModifier(boosted_neighbor.power_modifiers, { mod = 1, id = self.id })
 				end
 			end
 		end,
-		onErase = function(self)
-			for i in all(workbench.placed_components) do
-				removeModifier(i.power_modifiers, self.id)
-				removeModifier(i.compute_modifiers, self.id)
-			end
-		end
 	},
 	{
 		name = "Blob",
@@ -241,6 +229,16 @@ function componentFromTemplate(index)
 		ability_global = lib_component.ability_global or nil,
 		ability_instance = lib_component.ability_instance or nil,
 	}
+	if component.power > 0 then
+		component.produces_power = true
+	else
+		component.produces_power = false
+	end
+	if component.compute > 0 then
+		component.produces_compute = true
+	else
+		component.produces_compute = false
+	end
 	component.width = #component.collider[1]
 	component.height = #component.collider
 	return component

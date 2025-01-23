@@ -54,7 +54,7 @@ end
 
 function drawPlacedValues(components)
 	for i in all(components) do
-		if i.power > 0 then
+		if i.produces_power then
 			local str = string_icon.power .. i.power
 			rectfill(i.x + 3, i.y + 3, i.x + 13, i.y + 11, 0)
 			print(str,
@@ -62,7 +62,7 @@ function drawPlacedValues(components)
 				i.y + 4,
 				10
 			)
-		elseif i.compute > 0 then
+		elseif i.produces_compute then
 			local string = string_icon.compute .. i.compute
 			rectfill(i.x + 3, i.y + 3, i.x + 13, i.y + 11, 0)
 			print(string,

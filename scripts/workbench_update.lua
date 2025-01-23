@@ -219,7 +219,9 @@ end
 function evaluatePower(placed_components)
 	local total = 0
 	for i in all(placed_components) do
-		total += i.power
+		if i.produces_power then
+			total += i.power
+		end
 	end
 	total = sumModifiers(total, workbench.power_generated_modifiers)
 	return total
@@ -228,7 +230,9 @@ end
 function evaluateCompute(placed_components)
 	local total = 0
 	for i in all(placed_components) do
-		total += i.compute
+		if i.produces_compute then
+			total += i.compute
+		end
 	end
 	total = sumModifiers(total, workbench.compute_generated_modifiers)
 	return total
@@ -289,7 +293,7 @@ function placeComponent()
 	placed_component.power_original = placed_component.power
 	placed_component.power_modifiers = {}
 	placed_component.compute_original = placed_component.compute
-	placed_component.compute = {}
+	placed_component.compute_modifiers = {}
 
 	placed_component.neighbors = neighbors
 	if placed_component.onPlace ~= nil then
@@ -319,6 +323,16 @@ function eraseComponent()
 			if i.id == id and component_types[i.type].onErase != nil then
 				component_types[i.type].onErase(i)
 			end
+		end
+		for i in all(workbench.placed_components) do
+			removeModifier(i.power_modifiers, id)
+			removeModifier(i.compute_modifiers, id)
+			removeModifier(i.price_modifiers, id)
+			removeModifier(workbench.costs_modifiers, id)
+			removeModifier(workbench.power_generated_modifiers, id)
+			removeModifier(workbench.compute_generated_modifiers, id)
+			removeModifier(workbench.power_target_modifiers, id)
+			removeModifier(workbench.sell_target_modifiers, id)
 		end
 
 		deleteCellsFromCanvas(id)
