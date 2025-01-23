@@ -13,6 +13,10 @@ function updateWorkbench()
 		rotateComponent(workbench.held_component)
 	end
 
+	if keyp("tab") then
+		show_values = toggle(show_values)
+	end
+
 	if mouse_val.wheel_y == 1 then
 		rotateComponent(workbench.held_component)
 	elseif mouse_val.wheel_y == -1 then

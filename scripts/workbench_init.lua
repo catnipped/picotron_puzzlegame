@@ -52,6 +52,9 @@ function initWorkbench(level_number)
 	mouse_mode = { false, false, false, false } -- info, place, empty, erase
 	mouseMode(1)
 
+	--show component values on canvas flag
+	show_values = true
+
 	buttons = {}
 	initGoBackButton()
 	initToolboxButtons(13, 31)
