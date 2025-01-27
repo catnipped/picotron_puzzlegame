@@ -2,9 +2,9 @@
 function drawWorkbench()
 	drawCanvas(workbench.canvas)
 	drawLineRestrictions()
-	drawComponentBox(8, 64, 82, 200)
-	drawToolbox(8, 16, 82, 42)
-	drawTotal(400, 200)
+	drawComponentBox(8, 8, 82, 254)
+	drawToolbox(98, 8, 82, 42)
+	drawTotal(400, 150)
 
 	--draws the component under the mouse if one is held
 
@@ -12,7 +12,7 @@ function drawWorkbench()
 		cursor.draw = function()
 			spr(workbench.held_component.sprite + workbench.held_component.rotations, mouse_val.x - 4, mouse_val.y - 4)
 		end
-		drawComponentInfo(workbench.held_component, 100, 16)
+		drawComponentInfo(workbench.held_component, 98, 58)
 	end
 	if mouse_mode[1] and tooltip then
 		cursor.draw = function()
@@ -108,9 +108,11 @@ function drawPlacedComponents(placed_components)
 end
 
 function drawTotal(x, y)
+	drawWindowMetal(x - 4, y - 3, 74, 100)
+
 	local cost = "" .. max(flr(workbench.cost_of_components), 0)
 	local sell_target = "" .. workbench.sell_target
-	drawWindowMetal(x - 4, y - 3, 64, 50)
+
 	spr(75, x, y)
 	for i = 1, #cost do
 		local nr = 0 .. sub(cost, i, i)
@@ -120,6 +122,7 @@ function drawTotal(x, y)
 		pal(11, 8)
 		pal(38, 54)
 		pal(39, 51)
+		spr(155, x, y + 13)
 	end
 	spr(78, x + 64 - ((#sell_target + 2) * 7), y)
 	for i = 1, #sell_target do
@@ -127,27 +130,31 @@ function drawTotal(x, y)
 		spr(65 + nr, x + 64 - ((#sell_target + 2) * 7) + (7 * i), y)
 	end
 
-	local power = "" .. flr(workbench.power_generated)
-	local power_target = "" .. blueprint.power_target
-	spr(77, x, y + 16)
 	pal(11, 10)
 	pal(38, 46)
 	pal(39, 48)
+
+	local power = "" .. flr(workbench.power_generated)
+	local power_target = "" .. workbench.power_target
+	spr(77, x, y + 21)
+
 	for i = 1, #power do
 		local nr = 0 .. sub(power, i, i)
-		spr(65 + nr, x + (7 * i), y + 16)
+		spr(65 + nr, x + (7 * i), y + 21)
 	end
 
-	if workbench.power_generated < blueprint.power_target then
+	if workbench.power_generated < workbench.power_target then
 		pal(11, 8)
 		pal(38, 54)
 		pal(39, 51)
+		spr(154, x, y + 34)
 	end
-	spr(78, x + 64 - ((#power_target + 2) * 7), y + 16)
+	spr(78, x + 64 - ((#power_target + 2) * 7), y + 21)
 	for i = 1, #power_target do
 		local nr = 0 .. sub(power_target, i, i)
-		spr(65 + nr, x + 64 - ((#power_target + 2) * 7) + (7 * i), y + 16)
+		spr(65 + nr, x + 64 - ((#power_target + 2) * 7) + (7 * i), y + 21)
 	end
+
 
 	-- alien resource
 	local compute = "" .. flr(workbench.compute_generated)
@@ -155,10 +162,10 @@ function drawTotal(x, y)
 	pal(11, 62)
 	pal(38, 16)
 	pal(39, 63)
-	spr(79, x, y + 32)
+	spr(79, x, y + 42)
 	for i = 1, #compute do
 		local nr = 0 .. sub(compute, i, i)
-		spr(65 + nr, x + (7 * i), y + 32)
+		spr(65 + nr, x + (7 * i), y + 42)
 	end
 
 	--reset colors
@@ -169,7 +176,7 @@ function drawTotal(x, y)
 	if not blueprint.ready then
 		pal(11, 51)
 		pal(38, 0)
-		spr(86, x + 24, y + 32)
+		spr(86, x + 24, y + 42)
 		pal(38, 38)
 		pal(11, 11)
 	else
@@ -177,7 +184,7 @@ function drawTotal(x, y)
 			pal(11, 38)
 			pal(38, 00)
 		end
-		spr(86, x + 24, y + 32)
+		spr(86, x + 24, y + 42)
 		pal(38, 38)
 		pal(11, 11)
 	end

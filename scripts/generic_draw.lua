@@ -87,7 +87,7 @@ function drawPillButton(x, y, width, hover, clicked, label)
 end
 
 function drawComponentInfo(component, x, y)
-	local width = 90
+	local width = 80
 	local height = 56
 
 	rectfill(x + 2, y + 2, x + width + 2, y + height + 2, 1)

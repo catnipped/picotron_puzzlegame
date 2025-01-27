@@ -57,13 +57,13 @@ function initWorkbench(level_number)
 
 	buttons = {}
 	initGoBackButton()
-	initToolboxButtons(13, 31)
+	initToolboxButtons(103, 23)
 	component_buttons = {
 		buttons = {},
 		page = 1,
 		page_max = 1
 	}
-	initComponentBoxButtons(12, 68)
+	initComponentBoxButtons(12, 12)
 	evaluationUpdate()
 end
 
@@ -179,7 +179,7 @@ function initComponentBoxButtons(x, y)
 
 		-- offsets button dynamically, if it doesn't fit, put on next page (and up the page count)
 		y_offset += 16 + component_types[i].height * grid_size
-		if y_offset > 180 then
+		if y_offset > 250 then
 			component_button.y = y + 10
 			y_offset = 16 + component_types[i].height * grid_size
 			page_count += 1
