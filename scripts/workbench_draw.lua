@@ -134,7 +134,7 @@ function drawTotal(x, y)
     end
 
     pal(11, 10)
-    pal(38, 46)
+    pal(38, 49)
     pal(39, 48)
 
     --power
