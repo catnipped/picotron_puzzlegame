@@ -117,20 +117,21 @@ function drawTotal(x, y)
     local cost_y = y + 3
     line(cost_x - 2, cost_y, cost_x - 2, cost_y + 17, 39)
     spr(75, cost_x, cost_y)
-    for i = 1, #cost do
-        local nr = 0 .. sub(cost, i, i)
-        spr(65 + nr, cost_x + (7 * i), cost_y)
-    end
     if workbench.cost_of_components > workbench.sell_target then
         pal(11, 8)
         pal(38, 54)
         pal(39, 51)
         spr(155, cost_x, cost_y + 13)
     end
-    spr(78, cost_x + ((#cost + 2) * 7), cost_y)
+    for i = 1, #cost do
+        local nr = 0 .. sub(cost, i, i)
+        spr(65 + nr, cost_x + (7 * i), cost_y)
+    end
+
+    spr(78, cost_x + ((#cost + 1) * 7), cost_y)
     for i = 1, #sell_target do
         local nr = 0 .. sub(sell_target, i, i)
-        spr(65 + nr, cost_x + ((#cost + 2) * 7) + (7 * i), cost_y)
+        spr(65 + nr, cost_x + ((#cost + 1) * 7) + (7 * i), cost_y)
     end
 
     pal(11, 10)
@@ -144,22 +145,22 @@ function drawTotal(x, y)
     local power_y = cost_y
     line(power_x - 2, power_y, power_x - 2, power_y + 17, 39)
     spr(77, power_x, power_y)
-
-    for i = 1, #power do
-        local nr = 0 .. sub(power, i, i)
-        spr(65 + nr, power_x + (7 * i), power_y)
-    end
-
     if workbench.power_generated < workbench.power_target then
         pal(11, 8)
         pal(38, 54)
         pal(39, 51)
         spr(154, power_x, power_y + 13)
     end
-    spr(78, power_x + ((#power + 2) * 7), power_y)
+    for i = 1, #power do
+        local nr = 0 .. sub(power, i, i)
+        spr(65 + nr, power_x + (7 * i), power_y)
+    end
+
+
+    spr(78, power_x + ((#power + 1) * 7), power_y)
     for i = 1, #power_target do
         local nr = 0 .. sub(power_target, i, i)
-        spr(65 + nr, power_x + ((#power + 2) * 7) + (7 * i), power_y)
+        spr(65 + nr, power_x + ((#power + 1) * 7) + (7 * i), power_y)
     end
 
 
@@ -195,14 +196,19 @@ function drawTotal(x, y)
         local rest_y = compute_y
         line(rest_x - 2, rest_y, rest_x - 2, rest_y + 17, 39)
         spr(162, rest_x, rest_y)
+        if #blueprint.restrictions > rest_number then
+            pal(11, 8)
+            pal(38, 54)
+            pal(39, 51)
+        end
         for i = 1, #rest_string do
             local nr = 0 .. sub(rest_string, i, i)
             spr(65 + nr, rest_x + (7 * i), rest_y)
         end
-        spr(78, rest_x + ((#rest_string + 2) * 7), rest_y)
+        spr(78, rest_x + ((#rest_string + 1) * 7), rest_y)
         for i = 1, #rest_target do
             local nr = 0 .. sub(rest_target, i, i)
-            spr(65 + nr, rest_x + ((#rest_string + 2) * 7) + (7 * i), rest_y)
+            spr(65 + nr, rest_x + ((#rest_string + 1) * 7) + (7 * i), rest_y)
         end
     end
 
@@ -316,16 +322,4 @@ function drawLineRestrictionIcon(line_type, index, sprite, check, description, v
             drawGetInfo("Restriction", description, mouse_val.x + 6, mouse_val.y)
         end
     end
-end
-
-function drawGetInfo(title, description, x, y)
-    local width = 90
-    local height = 56
-
-    rectfill(x + 2, y + 2, x + width + 2, y + height + 2, 1)
-    rectfill(x, y, x + width, y + height, 39)
-    rect(x, y, x + width, y + height, 38)
-    rectfill(x, y, x + width, y + 10, 38)
-    print(title, x + 3, y + 2, 7)
-    print(description, x + 3, y + 14, 11)
 end
