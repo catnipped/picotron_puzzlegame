@@ -9,8 +9,8 @@ function initLevelSelect()
         string_color.yellow ..
         string_icon.power ..
         string_color.green ..
-        ") while staying under \nBUDGET ($). \nSee if you can get some \nCOMPUTE (" ..
-        string_color.blue .. string_icon.compute .. string_color.green .. ") as well...\n"
+        ") while staying under \nBUDGET ($). \nSee if you can get some \nichor (" ..
+        string_color.blue .. string_icon.ichor .. string_color.green .. ") as well...\n"
 
     -- list of blueprint select buttons
     local level_select_width = 4
@@ -72,7 +72,7 @@ function checkComponentUnlock()
             print("You unlocked a new component!", self.x + 8, self.y + 8, 11)
             drawComponentInfo(component_types[component_nr], self.x + 80, self.y + 24)
             drawCheckerBoard(self.x + 8, self.y + 24, component_types[component_nr].width,
-            component_types[component_nr].height, 38, 39)
+                component_types[component_nr].height, 38, 39)
             spr(component_types[component_nr].sprite, self.x + 8, self.y + 24)
         end
         unlock_pop.onClick = function(self)

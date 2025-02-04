@@ -180,7 +180,7 @@ function evaluationUpdate()
 
         i.price = sumModifiers(i.price_original, i.price_modifiers)
         i.power = sumModifiers(i.power_original, i.power_modifiers)
-        i.compute = sumModifiers(i.compute_original, i.compute_modifiers)
+        i.ichor = sumModifiers(i.ichor_original, i.ichor_modifiers)
     end
 
     workbench.power_target = sumModifiers(blueprint.power_target, workbench.power_target_modifiers)
@@ -188,7 +188,7 @@ function evaluationUpdate()
 
     workbench.cost_of_components = evaluateCost(workbench.placed_components)
     workbench.power_generated = evaluatePower(workbench.placed_components)
-    workbench.compute_generated = evaluateCompute(workbench.placed_components)
+    workbench.ichor_generated = evaluateichor(workbench.placed_components)
     workbench.placed_component_amount = countComponents(workbench.placed_components)
     workbench.restrictions = evaluateRestrictions(blueprint.restrictions)
 
@@ -227,14 +227,14 @@ function evaluatePower(placed_components)
     return total
 end
 
-function evaluateCompute(placed_components)
+function evaluateichor(placed_components)
     local total = 0
     for i in all(placed_components) do
-        if i.produces_compute then
-            total += i.compute
+        if i.produces_ichor then
+            total += i.ichor
         end
     end
-    total = sumModifiers(total, workbench.compute_generated_modifiers)
+    total = sumModifiers(total, workbench.ichor_generated_modifiers)
     return total
 end
 
@@ -292,8 +292,8 @@ function placeComponent()
     placed_component.price_modifiers = {}
     placed_component.power_original = placed_component.power
     placed_component.power_modifiers = {}
-    placed_component.compute_original = placed_component.compute
-    placed_component.compute_modifiers = {}
+    placed_component.ichor_original = placed_component.ichor
+    placed_component.ichor_modifiers = {}
 
     placed_component.neighbors = neighbors
     if placed_component.onPlace ~= nil then
@@ -326,11 +326,11 @@ function eraseComponent()
         end
         for i in all(workbench.placed_components) do
             removeModifier(i.power_modifiers, id)
-            removeModifier(i.compute_modifiers, id)
+            removeModifier(i.ichor_modifiers, id)
             removeModifier(i.price_modifiers, id)
             removeModifier(workbench.costs_modifiers, id)
             removeModifier(workbench.power_generated_modifiers, id)
-            removeModifier(workbench.compute_generated_modifiers, id)
+            removeModifier(workbench.ichor_generated_modifiers, id)
             removeModifier(workbench.power_target_modifiers, id)
             removeModifier(workbench.sell_target_modifiers, id)
         end

@@ -8,7 +8,7 @@ component_library = {
     --	info
     --	price
     --	power
-    --	compute
+    --	ichor
     -- 	max_rot
     -- 	draw(self)
     -- 	onPlace(self) add other unique variables that can be referenced by itself
@@ -70,11 +70,11 @@ component_library = {
         },
     },
     {
-        name = "Compute-a-byte",
-        info = "Generates " .. string_color.blue .. "1" .. string_icon.compute,
+        name = "ichor-a-byte",
+        info = "Generates " .. string_color.blue .. "1" .. string_icon.ichor,
         sprite = 32,
         price = 3,
-        compute = 1,
+        ichor = 1,
         collider = {
             { 1, 1 },
             { 1, 1 }
@@ -163,7 +163,7 @@ component_library = {
                 for i in all(workbench.placed_components) do
                     if i.id == id then
                         addModifier(i.power_modifiers, { mod = 1, id = self.id })
-                        addModifier(i.compute_modifiers, { mod = 1, id = self.id })
+                        addModifier(i.ichor_modifiers, { mod = 1, id = self.id })
                     end
                 end
             end
@@ -174,7 +174,7 @@ component_library = {
         sprite = 48,
         max_rot = 2,
         price = 5,
-        compute = 1,
+        ichor = 1,
         collider = {
             { 0, 1 },
             { 1, 0 }
@@ -214,7 +214,7 @@ function componentFromTemplate(index)
         max_rot = lib_component.max_rot or 1, --default is no rotations
         price = lib_component.price or 0,
         power = lib_component.power or 0,
-        compute = lib_component.compute or 0,
+        ichor = lib_component.ichor or 0,
         collider = lib_component.collider,
         draw = lib_component.draw or function(self)
             spr(self.sprite + self.rotations, self.x, self.y)
@@ -229,10 +229,10 @@ function componentFromTemplate(index)
     else
         component.produces_power = false
     end
-    if component.compute > 0 then
-        component.produces_compute = true
+    if component.ichor > 0 then
+        component.produces_ichor = true
     else
-        component.produces_compute = false
+        component.produces_ichor = false
     end
     component.width = #component.collider[1]
     component.height = #component.collider
@@ -253,7 +253,7 @@ end
 -- 		max_rot = 1,
 -- 		price = 2,
 -- 		power = 0,
--- 		compute = 0,
+-- 		ichor = 0,
 -- 		collider = { { 1 }
 -- 		},
 -- 		onPlace = function(self)
@@ -288,7 +288,7 @@ end
 -- 		max_rot = 2,
 -- 		price = 2,
 -- 		power = 2,
--- 		compute = 0,
+-- 		ichor = 0,
 -- 		collider = {
 -- 			{ 1, 1 }
 -- 		},
@@ -296,7 +296,7 @@ end
 -- 			spr(self.sprite + self.rotations, self.x, self.y)
 -- 		end,
 -- 		-- ability_global = function(self)
--- 		-- 	workbench.compute_generated += placed_component_amount[self.type]
+-- 		-- 	workbench.ichor_generated += placed_component_amount[self.type]
 -- 		-- end
 -- 	},
 -- 	{
@@ -310,7 +310,7 @@ end
 -- 		max_rot = 4,
 -- 		price = -1,
 -- 		power = 0,
--- 		compute = 0,
+-- 		ichor = 0,
 -- 		collider = {
 -- 			{ 1, 1 },
 -- 			{ 1, 0 }
@@ -331,7 +331,7 @@ end
 -- 		max_rot = 2,
 -- 		price = 2,
 -- 		power = 0,
--- 		compute = 0,
+-- 		ichor = 0,
 -- 		collider = {
 -- 			{ 1, 1, 1, 1 }
 -- 		},
@@ -350,8 +350,8 @@ end
 -- 	},
 -- 	{
 -- 		type = 5,
--- 		name = "Compute-a-byte",
--- 		info = "Generates " .. string_color.blue .. "1" .. string_icon.compute,
+-- 		name = "ichor-a-byte",
+-- 		info = "Generates " .. string_color.blue .. "1" .. string_icon.ichor,
 -- 		width = 2,
 -- 		height = 2,
 -- 		sprite = 32,
@@ -359,7 +359,7 @@ end
 -- 		max_rot = 0,
 -- 		price = 3,
 -- 		power = 0,
--- 		compute = 1,
+-- 		ichor = 1,
 -- 		collider = {
 -- 			{ 1, 1 },
 -- 			{ 1, 1 }

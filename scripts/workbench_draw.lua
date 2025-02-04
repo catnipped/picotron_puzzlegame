@@ -62,8 +62,8 @@ function drawPlacedValues(components)
                 i.y + 4,
                 10
             )
-        elseif i.produces_compute then
-            local string = string_icon.compute .. i.compute
+        elseif i.produces_ichor then
+            local string = string_icon.ichor .. i.ichor
             rectfill(i.x + 3, i.y + 3, i.x + 13, i.y + 11, 0)
             print(string,
                 i.x + 4,
@@ -165,18 +165,18 @@ function drawTotal(x, y)
 
 
     -- alien resource
-    local compute = "" .. flr(workbench.compute_generated)
-    local compute_x = power_x + 70
-    local compute_y = power_y
+    local ichor = "" .. flr(workbench.ichor_generated)
+    local ichor_x = power_x + 70
+    local ichor_y = power_y
 
     pal(11, 62)
     pal(38, 16)
     pal(39, 63)
-    line(compute_x - 2, compute_y, compute_x - 2, compute_y + 17, 39)
-    spr(79, compute_x, compute_y)
-    for i = 1, #compute do
-        local nr = 0 .. sub(compute, i, i)
-        spr(65 + nr, compute_x + (7 * i), compute_y)
+    line(ichor_x - 2, ichor_y, ichor_x - 2, ichor_y + 17, 39)
+    spr(79, ichor_x, ichor_y)
+    for i = 1, #ichor do
+        local nr = 0 .. sub(ichor, i, i)
+        spr(65 + nr, ichor_x + (7 * i), ichor_y)
     end
 
     --restrictions
@@ -192,8 +192,8 @@ function drawTotal(x, y)
         end
         local rest_string = "" .. flr(rest_number)
         local rest_target = "" .. flr(#blueprint.restrictions)
-        local rest_x = compute_x + 24
-        local rest_y = compute_y
+        local rest_x = ichor_x + 24
+        local rest_y = ichor_y
         line(rest_x - 2, rest_y, rest_x - 2, rest_y + 17, 39)
         spr(162, rest_x, rest_y)
         if #blueprint.restrictions > rest_number then
