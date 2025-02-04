@@ -5,7 +5,7 @@ function initProgression(bp_lib)
 		cleared_with_blue_amount = 0,
 		blueprints_starting_unlocks = 4,
 		blueprints = {},
-		components_starting_unlocks = 10,
+		components_starting_unlocks = 11,
 		components_unlocks = 0
 
 	}
