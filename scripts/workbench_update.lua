@@ -170,6 +170,7 @@ function sumModifiers(original, modifiers) -- "printed" value, and then a list o
 end
 
 function evaluationUpdate()
+    workbench.placed_component_amount = countComponents(workbench.placed_components)
     for i in all(workbench.placed_components) do
         if i.ability_instance then
             component_types[i.type].ability_instance(i)
@@ -185,11 +186,10 @@ function evaluationUpdate()
 
     workbench.power_target = sumModifiers(blueprint.power_target, workbench.power_target_modifiers)
     workbench.sell_target = sumModifiers(blueprint.sell_target, workbench.sell_target_modifiers)
-
     workbench.cost_of_components = evaluateCost(workbench.placed_components)
     workbench.power_generated = evaluatePower(workbench.placed_components)
     workbench.ichor_generated = evaluateichor(workbench.placed_components)
-    workbench.placed_component_amount = countComponents(workbench.placed_components)
+
     workbench.restrictions = evaluateRestrictions(blueprint.restrictions)
 
     for i = 1, #component_types do
@@ -302,6 +302,7 @@ function placeComponent()
     add(workbench.placed_components, placed_component)
     workbench.held_component_id += 1
     evaluationUpdate()
+    evaluationUpdate()
 end
 
 function rotateComponent(held_component)
@@ -338,7 +339,7 @@ function eraseComponent()
         deleteCellsFromCanvas(id)
         deleteComponentFromPlacedComponents(id)
 
-
+        evaluationUpdate()
         evaluationUpdate()
     end
 end

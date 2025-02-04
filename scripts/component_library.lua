@@ -16,20 +16,39 @@ component_library = {
     -- 	ability_instance(self)
 
     {
-        name = "Brick",
-        info = "Generates +1" .. string_icon.power .. " for every 4 of this you have placed",
-        sprite = 7,
+        name = "Ambrosia",
+        info = "The 4th placed generates 1 power. The 8th generates 1 ichor.",
+        sprite = 4,
         price = 0,
         collider = { { 1 } },
         onPlace = function(self)
-            self.sprite_variation = workbench.placed_component_amount[self.type] % 4 + 1
+            self.sprite_variation = 0
         end,
+
         draw = function(self)
             spr(self.sprite + self.sprite_variation, self.x, self.y)
         end,
-        ability_global = function(self) -- generate 1 power for each 4 of this
-            local power = flr(workbench.placed_component_amount[self.type] / 4)
-            workbench.power_generated += power
+        ability_global = function(self)
+            local count = 0
+            for i in all(workbench.placed_components) do
+                if i.type == self.type then
+                    removeModifier(i.power_modifiers, 1000)
+                    removeModifier(i.ichor_modifiers, 1000)
+                    i.produces_power = false
+                    i.produces_ichor = false
+                    i.sprite_variation = 0
+                    count += 1
+                    if workbench.placed_component_amount[self.type] >= 4 and count == 4 then
+                        i.sprite_variation = 1
+                        i.produces_power = true
+                        addModifier(i.power_modifiers, { mod = 1, id = 1000 })
+                    elseif workbench.placed_component_amount[self.type] >= 8 and count == 8 then
+                        i.sprite_variation = 2
+                        i.produces_ichor = true
+                        addModifier(i.ichor_modifiers, { mod = 1, id = 1000 })
+                    end
+                end
+            end
         end
     },
     {

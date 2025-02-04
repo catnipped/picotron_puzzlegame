@@ -65,6 +65,7 @@ function initWorkbench(level_number)
     }
     initComponentBoxButtons(12, 12)
     evaluationUpdate()
+    evaluationUpdate()
 end
 
 function initGoBackButton()
