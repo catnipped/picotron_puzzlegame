@@ -14,6 +14,43 @@ component_library = {
     -- 	onPlace(self) add other unique variables that can be referenced by itself
     -- 	ability_global(self)
     -- 	ability_instance(self)
+    {
+        name = "Pill",
+        info = "Generates 1 power",
+        sprite = 14,
+        max_rot = 2,
+        price = 2,
+        power = 1,
+        collider = {
+            { 1, 1 }
+        },
+    },
+    {
+        name = "Long",
+        info = "Generates 3 power",
+        sprite = 24,
+        max_rot = 2,
+        price = 3,
+        power = 3,
+        collider = {
+            { 1, 1, 1, 1 }
+        },
+    },
+    {
+        type = 3,
+        name = "Sponsorship",
+        info = "Increases budget by 1",
+        sprite = 16,
+        max_rot = 4,
+        price = 0,
+        collider = {
+            { 1, 1 },
+            { 1, 0 }
+        },
+        onPlace = function(self)
+            addModifier(workbench.sell_target_modifiers, { mod = 1, id = self.id })
+        end
+    },
 
     {
         name = "Ambrosia",
@@ -52,45 +89,8 @@ component_library = {
         end
     },
     {
-        name = "Pill",
-        info = "Generates " .. string_color.yellow .. string_icon.power,
-        sprite = 14,
-        max_rot = 2,
-        price = 1,
-        power = 1,
-        collider = {
-            { 1, 1 }
-        },
-    },
-    {
-        type = 3,
-        name = "Discounter",
-        info = "Each one reduces expenses by -$1",
-        sprite = 16,
-        max_rot = 4,
-        price = 0,
-        collider = {
-            { 1, 1 },
-            { 1, 0 }
-        },
-        onPlace = function(self)
-            addModifier(workbench.sell_target_modifiers, { mod = 1, id = self.id })
-        end
-    },
-    {
-        name = "Long",
-        info = "Generates " .. string_color.yellow .. string_icon.power,
-        sprite = 24,
-        max_rot = 2,
-        price = 3,
-        power = 3,
-        collider = {
-            { 1, 1, 1, 1 }
-        },
-    },
-    {
-        name = "ichor-a-byte",
-        info = "Generates " .. string_color.blue .. "1" .. string_icon.ichor,
+        name = "Impossible Engine",
+        info = "Generates 1 ichor",
         sprite = 32,
         price = 3,
         ichor = 1,
@@ -101,7 +101,7 @@ component_library = {
     },
     {
         name = "Chain",
-        info = "Makes one 1 power when connected to a another Chain",
+        info = "Generates one 1 power when connected to a another Chain",
         sprite = 40,
         max_rot = 2,
         price = 1,
@@ -133,6 +133,7 @@ component_library = {
     },
     {
         name = "Frame",
+        info = "Genrates 9 power",
         sprite = 42,
         price = 9,
         power = 9,
@@ -145,7 +146,7 @@ component_library = {
     },
     {
         name = "Booster",
-        info = "Boosts the effect of attached component",
+        info = "Boosts the generation of attached component",
         sprite = 43,
         max_rot = 4,
         price = 1,
