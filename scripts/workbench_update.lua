@@ -387,6 +387,16 @@ function countComponents(placed_components)
         list[i] = count
         if count < 1 then
             workbench.global_abilities[i] = false
+            for p in all(placed_components) do
+                removeModifier(p.power_modifiers, i)
+                removeModifier(p.ichor_modifiers, i)
+                removeModifier(p.price_modifiers, i)
+            end
+            removeModifier(workbench.costs_modifiers, i)
+            removeModifier(workbench.power_generated_modifiers, i)
+            removeModifier(workbench.ichor_generated_modifiers, i)
+            removeModifier(workbench.power_target_modifiers, i)
+            removeModifier(workbench.sell_target_modifiers, i)
         end
     end
     return list

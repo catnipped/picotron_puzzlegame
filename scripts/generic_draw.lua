@@ -105,7 +105,15 @@ function drawGetInfo(title, text, x, y, w)
 end
 
 function drawComponentInfo(component, x, y)
+    --[[     if component.price_modifiers then
+        local str = "mods: "
+        for i in all(component.price_modifiers) do
+            str = str .. i.id .. ","
+        end
+        print(str, x + 2, y - 16, 11)
+    end ]]
     drawGetInfo(component.name, component.info, x, y)
+    --  print(component.id, x + 2, y - 8, 10)
 end
 
 function horizontalCenter(s, middle) -- from pico 8 wiki
