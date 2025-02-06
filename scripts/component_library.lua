@@ -54,9 +54,9 @@ component_library = {
     {
         name = "Pill",
         info = "Generates 1 power",
-        sprite = 14,
+        sprite = 20,
         max_rot = 2,
-        price = 2,
+        price = 3,
         power = 1,
         collider = {
             { 1, 1 }
@@ -67,7 +67,7 @@ component_library = {
         info = "Generates 3 power",
         sprite = 24,
         max_rot = 2,
-        price = 6,
+        price = 5,
         power = 3,
         collider = {
             { 1, 1, 1, 1 }
@@ -76,7 +76,7 @@ component_library = {
     {
         type = 3,
         name = "Sponsorship",
-        info = "Increases budget by 1",
+        info = "Increases budget by 1 for every 2 empty spaces",
         sprite = 16,
         max_rot = 4,
         price = 0,
@@ -84,8 +84,10 @@ component_library = {
             { 1, 1 },
             { 1, 0 }
         },
-        onPlace = function(self)
-            addModifier(workbench.sell_target_modifiers, { mod = 1, id = self.id })
+        ability_instance = function(self)
+            local budget_increase = flr((workbench.canvas.space_count - workbench.used_spaces_count) / 2)
+            removeModifier(workbench.sell_target_modifiers, self.id)
+            addModifier(workbench.sell_target_modifiers, { mod = budget_increase, id = self.id })
         end
     },
 
@@ -173,7 +175,7 @@ component_library = {
         info = "Generates 5 power",
         sprite = 42,
         price = 8,
-        power = 5,
+        power = 6,
         collider = {
             { 1, 1, 1 },
             { 1, 0, 1 },
@@ -244,8 +246,8 @@ component_library = {
         info = "Generates 3 power",
         sprite = 51,
         max_rot = 4,
-        price = 4,
-        power = 3,
+        price = 3,
+        power = 2,
         collider = {
             { 0, 0, 1 },
             { 1, 1, 0 }

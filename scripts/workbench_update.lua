@@ -184,19 +184,23 @@ function evaluationUpdate()
         i.ichor = sumModifiers(i.ichor_original, i.ichor_modifiers)
     end
 
-    workbench.power_target = sumModifiers(blueprint.power_target, workbench.power_target_modifiers)
-    workbench.sell_target = sumModifiers(blueprint.sell_target, workbench.sell_target_modifiers)
-    workbench.cost_of_components = evaluateCost(workbench.placed_components)
-    workbench.power_generated = evaluatePower(workbench.placed_components)
-    workbench.ichor_generated = evaluateichor(workbench.placed_components)
-
-    workbench.restrictions = evaluateRestrictions(blueprint.restrictions)
-
     for i = 1, #component_types do
         if workbench.global_abilities[i] then
             component_types[i].ability_global(component_types[i])
         end
     end
+
+    workbench.power_target = sumModifiers(blueprint.power_target, workbench.power_target_modifiers)
+    workbench.sell_target = sumModifiers(blueprint.sell_target, workbench.sell_target_modifiers)
+    workbench.cost_of_components = evaluateCost(workbench.placed_components)
+    workbench.power_generated = evaluatePower(workbench.placed_components)
+    workbench.ichor_generated = evaluateIchor(workbench.placed_components)
+    workbench.used_spaces_count = countUsedSpaces(workbench.canvas)
+
+    workbench.restrictions = evaluateRestrictions(blueprint.restrictions)
+
+
+
 
     if workbench.restrictions
         and workbench.power_generated >= workbench.power_target
@@ -227,7 +231,7 @@ function evaluatePower(placed_components)
     return total
 end
 
-function evaluateichor(placed_components)
+function evaluateIchor(placed_components)
     local total = 0
     for i in all(placed_components) do
         if i.produces_ichor then
@@ -245,6 +249,18 @@ function evaluateCost(placed_components)
     end
     total = sumModifiers(total, workbench.costs_modifiers)
     return total
+end
+
+function countUsedSpaces(canvas)
+    count = 0
+    for x = 1, canvas.grid_width do
+        for y = 1, canvas.grid_height do
+            if canvas.grid[y][x] > 1 then
+                count += 1
+            end
+        end
+    end
+    return count
 end
 
 function placeComponent()

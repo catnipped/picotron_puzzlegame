@@ -40,6 +40,7 @@ function initWorkbench(level_number)
         workbench.sell_target = blueprint.sell_target
         workbench.sell_target_modifiers = {}
         workbench.restrictions = false
+        workbench.used_spaces_count =  0
 
         --instances a component from the library and gives it an id
         workbench.held_component = tablecopy(component_types[1])
@@ -261,12 +262,13 @@ function initCanvas()
     }
     --canvas grid is used for storing where components are placed
     canvas.grid = init2dTable(canvas.grid_width, canvas.grid_height)
-
+    canvas.space_count = canvas.grid_height * canvas.grid_width
     --set specific spaces as blocked
     for lx = 1, canvas.grid_width do
         for ly = 1, canvas.grid_height do
             if bmp:get(lx - 1, ly - 1) == 192 then
-                canvas.grid[ly][lx] = 1
+                canvas.grid[ly][lx] = 1 -- grid id for blocked spaces
+                canvas.space_count -= 1
             end
         end
     end
