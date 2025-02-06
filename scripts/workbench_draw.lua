@@ -164,7 +164,7 @@ function drawTotal(x, y)
     end
 
 
-    -- alien resource
+    -- ichor resource
     local ichor = "" .. flr(workbench.ichor_generated)
     local ichor_x = power_x + 70
     local ichor_y = power_y
@@ -218,21 +218,8 @@ function drawTotal(x, y)
     pal(39, 39)
     pal(11, 11)
 
-    if not blueprint.ready then
-        pal(11, 51)
-        pal(38, 0)
-        spr(86, x + 24, y + 42)
-        pal(38, 38)
-        pal(11, 11)
-    else
-        if every(120, 0, 30) then
-            pal(11, 38)
-            pal(38, 00)
-        end
-        spr(86, x + 24, y + 42)
-        pal(38, 38)
-        pal(11, 11)
-    end
+    local used_space_str = "used space:" .. workbench.used_spaces_count .. "/" .. workbench.canvas.space_count
+    print(used_space_str, x + 369 - (#used_space_str * 5), y + 8, 32)
 end
 
 function drawComponentBox(x, y, width, height)

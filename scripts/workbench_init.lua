@@ -40,7 +40,7 @@ function initWorkbench(level_number)
         workbench.sell_target = blueprint.sell_target
         workbench.sell_target_modifiers = {}
         workbench.restrictions = false
-        workbench.used_spaces_count =  0
+        workbench.used_spaces_count = 0
 
         --instances a component from the library and gives it an id
         workbench.held_component = tablecopy(component_types[1])
@@ -70,14 +70,35 @@ function initWorkbench(level_number)
 end
 
 function initGoBackButton()
-    local goBack_button = createButton(400, 250, 64, 16)
+    local goBack_button = createButton(480 - 54, 216, 36, 16)
     goBack_button.draw = function(self)
         local color = 2
         if blueprint.ready then color = 11 end
         if self.hover then color = 7 end
         drawPillButton(self.x, self.y, self.width, self.hover, self.clicked)
-        --	rectfill(self.x, self.y, self.x + self.width, self.y + self.height, color)
-        print("<- go back", self.x + 4, self.y + 4, 0)
+
+        if not blueprint.ready then
+            if self.hover then
+                pal(11, 8)
+                pal(38, 0)
+            else
+                pal(11, 51)
+                pal(38, 0)
+            end
+            spr(86, self.x + 2, self.y + 2)
+            pal(38, 38)
+            pal(11, 11)
+        else
+            if not self.hover then
+                if every(120, 0, 30) then
+                    pal(11, 38)
+                    pal(38, 00)
+                end
+            end
+            spr(86, self.x + 2, self.y + 2)
+            pal(38, 38)
+            pal(11, 11)
+        end
     end
     goBack_button.onClick = function(self)
         if blueprint.ready then
