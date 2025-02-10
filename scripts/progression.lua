@@ -1,5 +1,6 @@
 --[[pod_format="raw",created="2024-12-17 11:40:19",modified="2024-12-17 11:40:37",revision=1]]
 function initProgression(bp_lib)
+	cheat = true
 	local table = {
 		cleared_amount = 0,
 		cleared_with_blue_amount = 0,
@@ -7,8 +8,11 @@ function initProgression(bp_lib)
 		blueprints = {},
 		components_starting_unlocks = 10,
 		components_unlocks = 0
-
 	}
+	if cheat then
+		table.blueprints_starting_unlocks = #bp_lib
+		table.components_starting_unlocks = #component_library
+	end
 	for i = 1, #bp_lib do
 		table.blueprints[i] = {
 			unlocked = false,

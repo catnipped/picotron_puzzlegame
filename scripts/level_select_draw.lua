@@ -54,7 +54,7 @@ function drawBlueprintFile(x, y, level_number, hover, selected)
 		if progression.blueprints[level_number].clear_with_blue then
 			spr(99, x - 7, y - 3)
 			print(progression.blueprints[level_number].ichor_generated, x - 1, y + 2, 62)
-			print(progression.blueprints[level_number].ichor_generated, x - 2, y + 1, 7)
+			print(progression.blueprints[level_number].ichor_generated, x - 1, y + 1, 7)
 		elseif progression.blueprints[level_number].clear then
 			spr(91, x - 7, y - 3)
 		end
