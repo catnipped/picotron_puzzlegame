@@ -288,7 +288,7 @@ component_library = {
 		info = "Generates 1 ichor",
 		sprite = 48,
 		max_rot = 2,
-		price = 5,
+		price = 0,
 		ichor = 1,
 		collider = {
 			{ 0, 1 },

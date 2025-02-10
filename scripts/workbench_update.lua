@@ -205,7 +205,9 @@ function evaluationUpdate()
 	if workbench.restrictions
 		and workbench.power_generated >= workbench.power_target
 		and workbench.cost_of_components <= workbench.sell_target then
-		blueprint.ready = true
+		workbench.ready = true
+	else
+		workbench.ready = false
 	end
 end
 
