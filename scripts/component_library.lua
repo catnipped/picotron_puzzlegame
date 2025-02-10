@@ -147,6 +147,42 @@ component_library = {
 		end
 	},
 	{
+		name = "Diversity Engine",
+		info = "Generates 1 power per different type of neighbour",
+		sprite = 34,
+		max_rot = 2,
+		price = 5,
+		power = 0,
+		collider = {
+			{ 1, 1, 0 },
+			{ 0, 1, 1 }
+		},
+		ability_instance = function(self)
+			removeModifier(self.power_modifiers, self.id)
+			self.produces_power = false
+			self.list_of_unique_neighbor_types = {}
+			for n in all(self.neighbors) do
+				local neighbor = getComponentFromCell(n) -- placeholder to avoid nil error
+				if neighbor then
+					local uniquness = true
+					for i in all(self.list_of_unique_neighbor_types) do
+						if neighbor.type == i then
+							uniquness = false
+						end
+					end
+					if uniquness then
+						add(self.list_of_unique_neighbor_types, neighbor.type)
+					end
+				end
+			end
+			local type_count = #self.list_of_unique_neighbor_types or 0
+			if type_count > 0 then
+				self.produces_power = true
+				addModifier(self.power_modifiers, { mod = type_count, id = self.id })
+			end
+		end
+	},
+	{
 		name = "Impossible Engine",
 		info = "Generates 1 ichor",
 		sprite = 32,
