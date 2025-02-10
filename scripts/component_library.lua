@@ -76,8 +76,8 @@ component_library = {
 	},
 	{
 		type = 3,
-		name = "Sponsorship",
-		info = "Increases budget by 1 for every 2 empty spaces",
+		name = "Advanced Discount",
+		info = "Reduces component prices of neighbours by 1 for each empty neighbour space",
 		sprite = 16,
 		max_rot = 4,
 		price = 0,
@@ -86,9 +86,27 @@ component_library = {
 			{ 1, 0 }
 		},
 		ability_instance = function(self)
-			local budget_increase = flr((workbench.canvas.space_count - workbench.used_spaces_count) / 2)
-			removeModifier(workbench.sell_target_modifiers, self.id)
-			addModifier(workbench.sell_target_modifiers, { mod = budget_increase, id = self.id })
+			self.empty_neighbor_cells = {}
+			for i in all(self.neighbors) do
+				if getCanvasVal(i.x, i.y) == 0 then
+					add(self.empty_neighbor_cells, i)
+				end
+			end
+			self.discount_value = #self.empty_neighbor_cells
+			for i in all(self.neighbors) do
+				local neighbor = getComponentFromCell(i) -- placeholder to avoid nil error
+				if neighbor then
+					removeModifier(neighbor.price_modifiers, self.id)
+					addModifier(neighbor.price_modifiers, { mod = -self.discount_value, id = self.id })
+				end
+			end
+		end,
+		draw = function(self)
+			spr(self.sprite + self.rotations, self.x, self.y)
+			for i in all(self.empty_neighbor_cells) do
+				local x, y = workbench.canvas.x + ((i.x - 1) * grid_size), workbench.canvas.y + ((i.y - 1) * grid_size)
+				spr(3, x, y)
+			end
 		end
 	},
 

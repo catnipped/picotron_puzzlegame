@@ -21,6 +21,7 @@ function getComponentFromCell(cell)
 			end
 		end
 	end
+	return nil
 end
 
 function tableContainsVal(table, value)
