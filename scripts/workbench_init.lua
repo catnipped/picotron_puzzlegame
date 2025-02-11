@@ -54,7 +54,7 @@ function initWorkbench(level_number)
 	mouseMode(1)
 
 	--show component values on canvas flag
-	show_values = true
+	show_values = false
 
 	buttons = {}
 	initGoBackButton()

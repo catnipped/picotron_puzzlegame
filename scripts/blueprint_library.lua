@@ -40,6 +40,30 @@ blueprint_library = {
 		name = "open space",
 		sell_target = 20,
 		power_target = 15
-	}
+	},
+	{
+		file_name = "spiral",
+		name = "spiral",
+		sell_target = 20,
+		power_target = 15
+	},
+	{
+		file_name = "butterfly",
+		name = "butterfly",
+		sell_target = 20,
+		power_target = 15
+	},
+	{
+		file_name = "circle",
+		name = "circle",
+		sell_target = 20,
+		power_target = 15
+	},
+	{
+		file_name = "columns",
+		name = "columns",
+		sell_target = 20,
+		power_target = 15
+	},
 
 }

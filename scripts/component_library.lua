@@ -47,7 +47,7 @@ component_library = {
 			for i in all(self.neighbors) do
 				local neighbour = getComponentFromCell(i) or { type = 0 } -- placeholder to avoid nil error
 				if neighbour.type == component_types[self.type].basic_type then
-					addModifier(neighbour.price_modifiers, { mod = -1, id = self.type })
+					addModifier(neighbour.price_modifiers, { mod = -1, id = self.id })
 				end
 			end
 		end
