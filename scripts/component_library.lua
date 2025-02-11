@@ -109,7 +109,6 @@ component_library = {
 			end
 		end
 	},
-
 	{
 		name = "Ambrosia",
 		info = "The 4th placed generates 1 power. The 8th generates 1 ichor.",
@@ -195,7 +194,7 @@ component_library = {
 	},
 	{
 		name = "Chain",
-		info = "Generates one 1 power when connected to a another Chain",
+		info = "Generates one 1 power when connected to 1 or 2 other Chains",
 		sprite = 40,
 		max_rot = 2,
 		price = 1,
@@ -212,12 +211,16 @@ component_library = {
 		ability_instance = function(self)
 			--check if neighbors are the same type, sets power to 1 if so
 			self.produces_power = false
+			local chain_count = 0
 			for i in all(self.neighbors) do
 				local neighbour = getComponentFromCell(i) or { type = 0 } -- placeholder to avoid nil error
 				if neighbour.type == self.type then
-					self.produces_power = true
-					addModifier(self.power_modifiers, { mod = 1, id = self.id })
+					chain_count += 1
 				end
+			end
+			if chain_count > 0 and chain_count <= 2 then
+				self.produces_power = true
+				addModifier(self.power_modifiers, { mod = 1, id = self.id })
 			end
 			if self.produces_power == false then
 				removeModifier(self.power_modifiers, self.id)
@@ -294,6 +297,35 @@ component_library = {
 			{ 0, 1 },
 			{ 1, 0 }
 		},
+
+	},
+	{
+		name = "Alone",
+		info = "Generates 1 power, reduces power generation of neighbours by 1",
+		sprite = 14,
+		price = 1,
+		power = 1,
+		collider = {
+			{ 1 }
+		},
+		draw = function(self)
+			spr(self.sprite, self.x, self.y)
+			for i in all(self.neighbors) do
+				if getCanvasVal(i.x, i.y) == 0 then
+					local x, y = workbench.canvas.x + ((i.x - 1) * grid_size),
+						workbench.canvas.y + ((i.y - 1) * grid_size)
+					spr(15, x, y)
+				end
+			end
+		end,
+		ability_instance = function(self)
+			for i in all(self.neighbors) do
+				if getCanvasVal(i.x, i.y) > 1 then
+					local neighbor = getComponentFromCell(i) or {}
+					addModifier(neighbor.power_modifiers, { mod = -1, id = self.id })
+				end
+			end
+		end
 
 	},
 	{
