@@ -65,5 +65,51 @@ blueprint_library = {
 		sell_target = 20,
 		power_target = 15
 	},
+	{
+		file_name = "wed12A",
+		name = "wed12A",
+		sell_target = 20,
+		power_target = 15
+	},
+	{
+		file_name = "wed12B",
+		name = "wed12B",
+		sell_target = 20,
+		power_target = 15
+	},
+	{
+		file_name = "wed12C",
+		name = "wed12C",
+		sell_target = 20,
+		power_target = 15
+	},
+	{
+		file_name = "wed12D",
+		name = "wed12D",
+		sell_target = 20,
+		power_target = 15
+	},
+	{
+		file_name = "wed12E",
+		name = "wed12E",
+		sell_target = 20,
+		power_target = 15
+	},
+	{
+		file_name = "wed12F",
+		name = "wed12F",
+		sell_target = 20,
+		power_target = 15,
+		restrictions = {
+			createLineRestriction("row", 4, line_restrictions_lib.exact_power, 1),
+			createLineRestriction("col", 6, line_restrictions_lib.exact_power, 3)
+		}
+	},
+	{
+		file_name = "wed12G",
+		name = "wed12G",
+		sell_target = 20,
+		power_target = 15
+	},
 
 }
