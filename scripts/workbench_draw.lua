@@ -10,16 +10,17 @@ function drawWorkbench()
 
     if mouse_mode[2] then
         cursor.draw = function()
-            spr(workbench.held_component.sprite + workbench.held_component.rotations, mouse_val.x - 4, mouse_val.y - 4)
+            spr(workbench.held_component.sprite + workbench.held_component.rotations, mouse_val.x - 4,
+                mouse_val.y - 4)
         end
-        drawComponentInfo(workbench.held_component, 98, 58)
+        drawComponentInfo(workbench.held_component, 98 + 82 + 8, 12, 200)
     end
     if mouse_mode[1] and tooltip then
         cursor.draw = function()
             drawComponentInfo(tooltip, mouse_val.x + 6, mouse_val.y)
         end
     end
-    drawLevelInfo(200, 8)
+    --drawLevelInfo(200, 8)
 end
 
 function drawLevelInfo(x, y)
