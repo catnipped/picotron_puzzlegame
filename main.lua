@@ -105,7 +105,7 @@ function _draw()
 		cursor.draw()
 	end
 	--debug
-	drawDebug()
+	--drawDebug()
 end
 
 --error explorer thing for debugging

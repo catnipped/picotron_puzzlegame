@@ -20,11 +20,12 @@ function drawWorkbench()
             drawComponentInfo(tooltip, mouse_val.x + 6, mouse_val.y)
         end
     end
-    --drawLevelInfo(200, 8)
+    drawLevelInfo(428, 220)
 end
 
 function drawLevelInfo(x, y)
-    print("\#2" .. "level:" .. blueprint.name, x, y, 0)
+    local str = "\#1" .. "level:" .. blueprint.name
+    print(str, x - (#str * 5), y, 17)
 end
 
 function drawCanvas(canvas)
