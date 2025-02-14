@@ -27,7 +27,7 @@ component_library = {
 	},
 	{
 		name = "Basic Discount",
-		info = "Reduces the cost of Basic neighbors by 1.",
+		info = "Reduces the cost of Basic neighbors by 1",
 		sprite = 12,
 		max_rot = 2,
 		price = 1,
@@ -230,7 +230,7 @@ component_library = {
 	},
 	{
 		name = "Frame",
-		info = "Generates 5 power",
+		info = "Generates 6 power",
 		sprite = 42,
 		price = 8,
 		power = 6,
@@ -291,7 +291,7 @@ component_library = {
 		info = "Generates 1 ichor",
 		sprite = 48,
 		max_rot = 2,
-		price = 0,
+		price = 5,
 		ichor = 1,
 		collider = {
 			{ 0, 1 },
@@ -330,7 +330,7 @@ component_library = {
 	},
 	{
 		name = "Displaced",
-		info = "Generates 3 power",
+		info = "Generates 2 power",
 		sprite = 51,
 		max_rot = 4,
 		price = 3,

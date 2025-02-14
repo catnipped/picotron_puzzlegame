@@ -26,14 +26,14 @@ blueprint_library = {
 	{
 		file_name = "test3",
 		name = "two legs",
-		sell_target = 15,
-		power_target = 13
+		sell_target = 13,
+		power_target = 10
 	},
 	{
 		file_name = "mega",
 		name = "mega",
 		sell_target = 10,
-		power_target = 15
+		power_target = 13
 	},
 	{
 		file_name = "open",

@@ -6,7 +6,7 @@ function initProgression(bp_lib)
 		cleared_with_blue_amount = 0,
 		blueprints_starting_unlocks = 2,
 		blueprints = {},
-		components_starting_unlocks = 10,
+		components_starting_unlocks = 3,
 		components_unlocks = 0
 	}
 	if cheat then
@@ -43,3 +43,4 @@ function saveProgression()
 	updateLevelProgression()
 	store("/appdata/puzzle/progression.pod", progression)
 end
+
