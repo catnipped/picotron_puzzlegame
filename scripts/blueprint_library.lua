@@ -75,14 +75,14 @@ blueprint_library = {
     {
         file_name = "test3",
         name = "two legs",
-        sell_target = 13,
-        power_target = 10
+        sell_target = 12,
+        power_target = 8
     },
     {
         file_name = "wed12F",
         name = "restricted",
-        sell_target = 20,
-        power_target = 15,
+        sell_target = 14,
+        power_target = 14,
         restrictions = {
             createLineRestriction("row", 4, line_restrictions_lib.exact_power, 1),
             createLineRestriction("col", 6, line_restrictions_lib.exact_power, 3)
@@ -95,14 +95,41 @@ blueprint_library = {
     {
         file_name = "mega",
         name = "mega",
-        sell_target = 10,
-        power_target = 13
+        sell_target = 8,
+        power_target = 10
+    },
+    {
+        file_name = "wed12A",
+        name = "gravel",
+        sell_target = 11,
+        power_target = 12
+    },
+    {
+        file_name = "butterfly",
+        name = "butterfly",
+        sell_target = 20,
+        power_target = 20,
+        restrictions = {
+            createLineRestriction("col", 4, line_restrictions_lib.exact_power, 2),
+            createLineRestriction("col", 12, line_restrictions_lib.exact_power, 4),
+        },
     },
     {
         file_name = "open",
         name = "open space",
+        sell_target = 17,
+        power_target = 15,
+        restrictions = {
+            createLineRestriction("row", 3, line_restrictions_lib.exact_power, 0),
+            createLineRestriction("row", 6, line_restrictions_lib.exact_power, 0),
+            createLineRestriction("row", 8, line_restrictions_lib.exact_power, 1),
+        },
+    },
+    {
+        file_name = "wed12B",
+        name = "landsquid",
         sell_target = 20,
-        power_target = 15
+        power_target = 12
     },
     --[[ 	{
 		file_name = "spiral",
@@ -110,41 +137,19 @@ blueprint_library = {
 		sell_target = 20,
 		power_target = 15
 	}, ]]
-    {
-        file_name = "butterfly",
-        name = "butterfly",
-        sell_target = 20,
-        power_target = 15
-    },
-    {
-        file_name = "circle",
-        name = "circle",
-        sell_target = 20,
-        power_target = 15
-    },
-    {
-        file_name = "columns",
-        name = "columns",
-        sell_target = 20,
-        power_target = 15
-    },
-    {
-        file_name = "wed12A",
-        name = "gravel",
-        sell_target = 20,
-        power_target = 15
-    },
-    {
-        file_name = "wed12B",
-        name = "landsquid",
-        sell_target = 20,
-        power_target = 15
-    },
+
+
+
     {
         file_name = "wed12C",
         name = "offshore",
-        sell_target = 20,
-        power_target = 15
+        sell_target = 14,
+        power_target = 23,
+        restrictions = {
+            createLineRestriction("col", 8, line_restrictions_lib.exact_power, 1),
+            createLineRestriction("col", 10, line_restrictions_lib.exact_power, 2),
+            createLineRestriction("col", 12, line_restrictions_lib.exact_power, 3),
+        },
     },
     {
         file_name = "wed12D",
@@ -152,17 +157,47 @@ blueprint_library = {
         sell_target = 20,
         power_target = 15
     },
+
+    {
+        file_name = "columns",
+        name = "columns",
+        sell_target = 30,
+        power_target = 20,
+        restrictions = {
+            createLineRestriction("row", 5, line_restrictions_lib.exact_power, 0),
+            createLineRestriction("row", 6, line_restrictions_lib.exact_power, 0),
+        },
+    },
     {
         file_name = "wed12E",
         name = "kite",
-        sell_target = 20,
-        power_target = 15
+        sell_target = 10,
+        power_target = 15,
+        restrictions = {
+            createLineRestriction("col", 3, line_restrictions_lib.exact_power, 5),
+            createLineRestriction("col", 8, line_restrictions_lib.exact_power, 0),
+            createLineRestriction("row", 8, line_restrictions_lib.exact_power, 3),
+        },
     },
     {
         file_name = "wed12G",
         name = "canister",
         sell_target = 20,
-        power_target = 15
+        power_target = 15,
+        restrictions = {
+            createLineRestriction("col", 4, line_restrictions_lib.exact_power, 0),
+            createLineRestriction("col", 5, line_restrictions_lib.exact_power, 9),
+        },
+    },
+    {
+        file_name = "circle",
+        name = "iris",
+        sell_target = 20,
+        power_target = 25,
+        restrictions = {
+            createLineRestriction("row", 6, line_restrictions_lib.exact_power, 6),
+            createLineRestriction("col", 7, line_restrictions_lib.exact_power, 4),
+        },
     },
 
 }

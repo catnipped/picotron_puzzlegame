@@ -37,7 +37,7 @@ component_library = {
         },
         onPlace = function(self)
             for i in all(component_types) do
-                if i.name == "Basic" then
+                if i.name == "Pink" then
                     component_types[self.type].basic_type = i.type
                     break
                 end
