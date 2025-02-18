@@ -41,12 +41,12 @@ blueprint_library = {
 		sell_target = 20,
 		power_target = 15
 	},
-	{
+--[[ 	{
 		file_name = "spiral",
 		name = "spiral",
 		sell_target = 20,
 		power_target = 15
-	},
+	}, ]]
 	{
 		file_name = "butterfly",
 		name = "butterfly",

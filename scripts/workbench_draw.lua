@@ -1,5 +1,6 @@
 --[[pod_format="raw",created="2024-05-12 07:45:28",modified="2024-11-27 14:19:37",revision=94]]
 function drawWorkbench()
+    drawCheckerBoard(-8,-8,21,12,21,34,24)
     drawCanvas(workbench.canvas)
     drawLineRestrictions()
     drawComponentBox(8, 8, 82, 254)

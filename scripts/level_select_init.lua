@@ -5,19 +5,14 @@ function initLevelSelect()
     window { cursor = 1 }
 
     welcome_message =
-        "Hi! Click a level twice to \nstart it. \n\nUse QWER and 12345 to change \ntools, LEFT MOUSE to place and \nRIGHT MOUSE to rotate. \nThe goal is to reach a certain \nPOWER (" ..
-        string_color.yellow ..
-        string_icon.power ..
-        string_color.green ..
-        ") while staying under \nBUDGET ($). \nSee if you can get some \nichor (" ..
-        string_color.blue .. string_icon.ichor .. string_color.green .. ") as well...\n"
+        "Hi! The goal is to place tiles, generating enough POWER to reach the quota while staying under BUDGET. See if you can get some ICHOR as well... Click a level file to start."
 
     -- list of blueprint select buttons
     local level_select_width = 4
     for i = 1, #blueprint_library do
         local y_offset = (flr((i - 1) / level_select_width) * 64)
         local x_offset = ((i - 1) % level_select_width) * 64
-        local level_button = createButton(216 + x_offset, 16 + y_offset, 42, 42)
+        local level_button = createButton(208 + x_offset, 14 + y_offset, 42, 42)
         level_button.draw = function(self)
             drawBlueprintFile(self.x, self.y + self.y_offset, i, self.hover, self.selected)
         end
@@ -42,7 +37,7 @@ function initLevelSelect()
         level_page -= 1
         level_page = mid(0, level_page, page_count)
     end
-    add(buttons, page_up)
+    --add(buttons, page_up)
 
     local page_down = createButton(36, 216, 16, 16)
     page_down.draw = function(self)
@@ -52,7 +47,7 @@ function initLevelSelect()
         level_page += 1
         level_page = mid(0, level_page, page_count)
     end
-    add(buttons, page_down)
+    --add(buttons, page_down)
 
     checkComponentUnlock()
 end

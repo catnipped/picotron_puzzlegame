@@ -11,7 +11,8 @@ function stringIcon(icon, color, label, label_after, color_reset)
     return "\f" .. color .. label .. icon .. label_after .. "\f" .. color_reset
 end
 
-function drawCheckerBoard(offset_x, offset_y, grid_w, grid_h, clr, bg_clr)
+function drawCheckerBoard(offset_x, offset_y, grid_w, grid_h, clr, bg_clr, size)
+    local grid_size = size or grid_size
     --checkerboard
     rectfill(offset_x, offset_y, offset_x + (grid_w * grid_size) - 1, offset_y + (grid_h * grid_size) - 1, bg_clr)
     for x = 0, grid_w - 1 do
