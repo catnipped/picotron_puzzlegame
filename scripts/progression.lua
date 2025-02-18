@@ -1,6 +1,6 @@
 --[[pod_format="raw",created="2024-12-17 11:40:19",modified="2024-12-17 11:40:37",revision=1]]
 function initProgression(bp_lib)
-    cheat = true
+    cheat = false
     local table = {
         cleared_amount = 0,
         cleared_with_blue_amount = 0,
@@ -41,5 +41,5 @@ end
 
 function saveProgression()
     updateLevelProgression()
-    --store("/appdata/powertile/progression.pod", progression)
+    store("/appdata/powertile/progression.pod", progression)
 end

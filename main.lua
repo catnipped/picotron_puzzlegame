@@ -25,7 +25,6 @@ function _init()
 
     --set font
     poke(0x4000, get(fetch "/system/fonts/lil_mono.font"))
-    --poke(0x4000, get(fetch("includes/enias_font.font")))
 
     component_types = initComponentTypes() -- generates exhaustive table of each type of component, using the library
 
@@ -45,7 +44,7 @@ function _init()
     cursor = {}
 
     -- load progression save file or init if nil
-    --progression = fetch("/appdata/powertile/progression.pod")
+    progression = fetch("/appdata/powertile/progression.pod")
     if progression == nil then
         mkdir("/appdata/powertile")
         mkdir("/appdata/powertile/blueprint_solutions")

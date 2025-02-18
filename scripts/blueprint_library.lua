@@ -88,6 +88,9 @@ blueprint_library = {
             createLineRestriction("col", 6, line_restrictions_lib.exact_power, 3)
         },
         popups = { {
+            title = "More tiles...",
+            content = "If you have unlocked more tile types than can fit in the box, you can find them on the next page, use the +/- buttons to navigate, or use 123 on your keyboard."
+        }, {
             title = "Restrictions",
             content = "Some levels have restrictions! Use the info tool to inspect each restriction."
         } }

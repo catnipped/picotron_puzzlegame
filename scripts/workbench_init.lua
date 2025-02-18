@@ -123,9 +123,10 @@ function initGoBackButton()
             progression.blueprints[current_level].cost_of_components = workbench.cost_of_components
         end
         --saving
-        --printh("saving...")
-        --saveProgression()
-        --store("/appdata/powertile/blueprint_solutions/" .. blueprint.file_name .. ".pod", workbench)
+        printh("saving...")
+        saveProgression()
+
+        store("/appdata/powertile/blueprint_solutions/" .. blueprint.file_name .. ".pod", workbench)
 
         --switch screens
         current_screen = "level select"
@@ -355,7 +356,7 @@ function addTutorialPopup(content, title, x, y, width)
     local y = y or alignCenter(height, 270)
     if title then height += 12 end
     local pop = createButton(x, y, width, height)
-    
+
     pop.draw = function(self)
         drawWindowGlass(self.x, self.y, self.width, self.height)
         if title then
