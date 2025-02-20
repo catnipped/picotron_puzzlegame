@@ -185,7 +185,7 @@ blueprint_library = {
     {
         file_name = "wed12G",
         name = "canister",
-        sell_target = 20,
+        sell_target = 10,
         power_target = 15,
         restrictions = {
             createLineRestriction("col", 4, line_restrictions_lib.exact_power, 0),

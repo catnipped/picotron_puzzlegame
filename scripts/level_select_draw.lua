@@ -12,7 +12,7 @@ function drawLevelSelect()
 
     local prog_x = 16
     local prog_y = 245
-    drawWindowMetal(prog_x - 4, prog_y - 8, 96, 25)
+    drawWindowMetal(prog_x - 4, prog_y - 8, 100, 25)
     spr(91, prog_x, prog_y - 4)
     print(progression.cleared_amount .. "/" .. #blueprint_library, prog_x + 20, prog_y, 7)
     prog_x = prog_x + 48
