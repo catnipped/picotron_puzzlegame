@@ -180,8 +180,6 @@ function evaluationUpdate()
         end
 
         i.price = max(0, sumModifiers(i.price_original, i.price_modifiers))
-        printh("id:" ..
-            i.id .. " price:" .. i.price_original .. " modded:" .. i.price .. " modifiers:" .. #i.price_modifiers)
         i.power = max(0, sumModifiers(i.power_original, i.power_modifiers))
         i.ichor = max(0, sumModifiers(i.ichor_original, i.ichor_modifiers))
     end
@@ -302,6 +300,8 @@ function placeComponent()
         end
     end
 
+    unique_neighbors = removeDuplicateNeighbors(neighbors)
+
     local placed_component = tablecopy(workbench.held_component)
     placed_component.x = mouse_cell_x * grid_size + workbench.canvas.x
     placed_component.y = mouse_cell_y * grid_size + workbench.canvas.y
@@ -315,7 +315,7 @@ function placeComponent()
     placed_component.ichor_original = placed_component.ichor
     placed_component.ichor_modifiers = {}
 
-    placed_component.neighbors = neighbors
+    placed_component.neighbors = unique_neighbors
     if placed_component.onPlace ~= nil then
         placed_component.onPlace(placed_component)
     end

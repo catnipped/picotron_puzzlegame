@@ -5,7 +5,7 @@ function initLevelSelect()
     window { cursor = 1 }
 
     welcome_message =
-        "Hi! The goal is to place tiles, generating enough POWER to reach the quota while staying under BUDGET. See if you can get some ICHOR as well... Click a level file to start."
+    "Hi! The goal is to place tiles, generating enough POWER to reach the quota while staying under BUDGET. See if you can get some ICHOR as well... Click a level file to start."
 
     -- list of blueprint select buttons
     local level_select_width = 4
@@ -59,7 +59,7 @@ function checkComponentUnlock()
         progression.components_unlocks += 1
 
         --make a popup!
-        local unlock_pop = createButton(alignCenter(180, 480), alignCenter(100, 270), 180, 100)
+        local unlock_pop = createButton(alignCenter(190, 480), alignCenter(100, 270), 190, 100)
         local component_nr = progression.components_starting_unlocks + progression.components_unlocks
         unlock_pop.draw = function(self)
             drawWindowMetal(self.x, self.y, self.width, self.height)
