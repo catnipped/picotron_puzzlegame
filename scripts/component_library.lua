@@ -212,11 +212,15 @@ component_library = {
             --check if neighbors are the same type, sets power to 1 if so
             self.produces_power = false
             local chain_count = 0
+            local chained_ids = {}
             for i in all(self.neighbors) do
                 local neighbour = getComponentFromCell(i) or { type = 0 } -- placeholder to avoid nil error
                 if neighbour.type == self.type then
-                    chain_count += 1
+                    chained_ids[neighbour.id] = neighbour.id
                 end
+            end
+            for k, v in pairs(chained_ids) do
+                chain_count += 1
             end
             if chain_count > 0 and chain_count <= 2 then
                 self.produces_power = true
@@ -260,7 +264,7 @@ component_library = {
             for y = 1, workbench.canvas.grid_height do
                 for x = 1, workbench.canvas.grid_width do
                     if workbench.canvas.grid[y][x] == self.id then
-                        if self.rotations == 0 then --south
+                        if self.rotations == 0 then     --south
                             self.boosted_neighbour = vec(x, y + 1)
                         elseif self.rotations == 1 then --east
                             self.boosted_neighbour = vec(x + 1, y)
