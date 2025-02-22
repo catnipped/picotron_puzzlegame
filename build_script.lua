@@ -1,4 +1,4 @@
---this should be in main, then when exporting, replace main.lua with main_game.lua
+--this should be in main as main.lua, then when exporting, replace main.lua with main_game.lua
 cd '/source/puzzlegame/'
 
 cp('scripts', '/ram/cart/scripts')
