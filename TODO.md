@@ -3,10 +3,10 @@
 ## 1.0
 
 - [x] modifier system -- instead of changing values to components, add/remove modifiers that are calculated on evaluation
-- [ ] name and logo :)
+- [x] name and logo :)
 - [ ] sound fx
-- [ ] tutorial popups
-- [ ] levels...
+- [x] tutorial popups
+- [x] levels...
 
 ## 1.1
 
